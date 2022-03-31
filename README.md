@@ -10,7 +10,7 @@ David Milanović | dmilanovi@foi.hr | 0016145536 | DavidMilanovic1
 Noel Zagorščak | nzagorsca@foi.hr | 0016142903 | NoelZagorscak02000
 
 ## Opis domene
-Podaci o stanju parkirnih mjesta u nekom gradu.
+Cilj izrade ove aplikacije je prikazivanje zauzetosti parkirnih mjesta u gradu. Korištenjem ove aplikacije, korisnici mogu puno brže i lakše pronaći parking u gradu što je pogotovo korisno u slučaju nekog događaja (npr. Špancirfest). Osim događaja u gradu, također se uzima u obzir i meteorološke prilike te se algoritmima procjenjuje trenutačan broj slobodnih/zauzetih parkirnih mjesta. 
 
 ## Specifikacija projekta
 
@@ -22,8 +22,8 @@ F03 | Korisničko sučelje | Napravit API u C# koji periodički povlači podatke
 F04 | Statistika | Napraviti osnovne statističke analize duljine parkiranja, broja parkiranja, po ulicama, po tipu. | Grgo Penava
 F05 | Analiza | Napraviti analize parkiranja tijekom godine, tjedna i dana. Na primjer u zimi je manji broj parkiranja, u turističkim gradovima u ljeti više, u kontinentalnima manje, subotom ujutro više, u nedjelju navečer manje i sl. | David Milanović
 F06 | Machine Learning | Upotrebom Machine Learning probati naći zavisnosti između meteo uvjeta, parkiranja, tipa punionice, ponašanja ljudi, događaja u gradu i sl. Na primjer ako je nedjeljom navečer kiša ovaj parking je obično samo 30% pun. | Grgo Penava
-F07 | Algoritam predviđanja | Napraviti algoritam za traženje odstupanja od pravila, na primjer svako jutro radnim danom u ulici kod škole ima oko 200 parkiranja, danas je bilo 20 i to je odstupanje od trenda. | Ivan Ercegovac
-F08 | Algoritam odstupanja | Napraviti algoritam za predviđanje kolika je trenutna šansa da na nekom parkiralištu (ulica u gradu) nađemo slobodno parkirno mjesto sad trenutno | David Milanović
+F07 | Algoritam traženja | Napraviti algoritam za traženje odstupanja od pravila, na primjer svako jutro radnim danom u ulici kod škole ima oko 200 parkiranja, danas je bilo 20 i to je odstupanje od trenda. | Ivan Ercegovac
+F08 | Algoritam predviđanja | Napraviti algoritam za predviđanje kolika je trenutna šansa da na nekom parkiralištu (ulica u gradu) nađemo slobodno parkirno mjesto sad trenutno | David Milanović
 
 ## Tehnologije i oprema
 Visual Studio Community 2019, draw.io, GitHub, GitHub Classroom, SQLite, Visual Paradigm, MS Word
