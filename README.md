@@ -1,38 +1,29 @@
-# Inicijalne upute za prijavu projekta iz Programskog inženjerstva
-
-Poštovane kolegice i kolege, 
-
-čestitamo vam jer ste uspješno prijavili svoj projektni tim na kolegiju Programsko inženjerstvo, te je za vas automatski kreiran repozitorij koji ćete koristiti za verzioniranje vašega koda, ali i za pisanje dokumentacije.
-
-Ovaj dokument (README.md) predstavlja **osobnu iskaznicu vašeg projekta**. Vaš prvi zadatak, ukoliko niste odabrali da želite raditi na projektu sa nastavnicima ili u sklopu WBL-a je **prijaviti vlastiti projektni prijedlog** na način da ćete prijavu vašeg projekta, sukladno uputama danim u ovom tekstu, napisati upravo u ovaj dokument, umjesto ovoga teksta.
-
-Za upute o sintaksi koju možete koristiti u ovom dokumentu i kod pisanje vaše projektne dokumentacije pogledajte [ovaj link](https://guides.github.com/features/mastering-markdown/).
-Sav programski kod potrebno je verzionirati u glavnoj **master** grani i **obvezno** smjestiti u mapu Software. Sve artefakte (npr. slike) koje ćete koristiti u vašoj dokumentaciju obvezno verzionirati u posebnoj grani koja je već kreirana i koja se naziva **master-docs** i smjestiti u mapu Documentation.
-
-Nakon vaše prijave bit će vam dodijeljen mentor s kojim ćete tijekom semestra raditi na ovom projektu. A sada, vrijeme je da prijavite vaš projekt. Za prijavu vašeg projektnog prijedloga molimo vas koristite **predložak** koji je naveden u nastavku, a započnite tako da kliknete na *olovku* u desnom gornjem kutu ovoga dokumenta :) 
-
 # Parkirna mjesta
-(u redak iznad navedite kratki proizvoljni naziv projekta prikladan akademskoj zajednici, a ovaj tekst obrišite)
 
 ## Projektni tim
 
 Ime i prezime | E-mail adresa (FOI) | JMBAG | Github korisničko ime
 ------------  | ------------------- | ----- | ---------------------
 Ivan Ercegovac | iercegova@foi.hr | 0016141703 | IvanErcegovac
-Grgo Penava | gpenava@foi.hr | ... | ...
-David Milanović | dmilanovi@foi.hr | ... | DavidMilanovic1
+Grgo Penava | gpenava@foi.hr | 0016142422 | GrgoPenava
+David Milanović | dmilanovi@foi.hr | 0016145536 | DavidMilanovic1
 Noel Zagorščak | nzagorsca@foi.hr | 0016142903 | NoelZagorscak02000
 
 ## Opis domene
-Umjesto ovih uputa opišite domenu ili problem koji pokrivate vašim  projektom. Domena može biti proizvoljna, ali obratite pozornost da sukladno ishodima učenja, domena omogući primjenu zahtijevanih koncepata kako je to navedeno u sljedećem poglavlju. Priložite odgovarajuće skice gdje je to prikladno.
+Podaci o stanju parkirnih mjesta u nekom gradu.
 
 ## Specifikacija projekta
-Umjesto ovih uputa opišite zahtjeve za funkcionalnošću programskog proizvoda. Pobrojite osnovne funkcionalnosti i za svaku naznačite ime odgovornog člana tima. Opišite buduću arhitekturu programskog proizvoda. Obratite pozornost da bi arhitektura trebala biti višeslojna s odvojenom (dislociranom) bazom podatka. Također uzmite u obzir da bi svaki član tima treba biti odgovorana za otprilike 3 funkcionalnosti, te da bi opterećenje članova tima trebalo biti ujednačeno. Priložite odgovarajuće dijagrame i skice gdje je to prikladno. Funkcionalnosti sustava bobrojite u tablici ispod koristeći predložak koji slijedi:
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Login | Za pristup dnevniku potrebnba je autentikacija korisnika pomoću login funkcionalnosti. Korisnik se logira s podacima koji su mu dodijeljeni prilikom ... | Zlatko Stapić
-F02 | Pregled dnevnika | .... | ...
+F01 | Registracija | Korisnik se mora registrirati kako bi mogao pristupiti aplikaciji. Admini ne moraju odraditi registraciju te imaju pre-made račune. | Noel Zagorščak
+F02 | Login | Korisnik aplikacije mora se prijaviti kao običan korisnik ili admin.	 | Ivan Ercegovac
+F03 | Korisničko sučelje | Napravit API u C# koji periodički povlači podatke sa naše Parking Platforme putem REST API-ja i daje podatke o parkiranjima na parkirnim mjestima te napraviti mogućnost dodavanja posebnih događaja u gradu kada se mijenja frekvencija parkiranja | Noel Zagorščak
+F04 | Statistika | Napraviti osnovne statističke analize duljine parkiranja, broja parkiranja, po ulicama, po tipu. | Grgo Penava
+F05 | Analiza | Napraviti analize parkiranja tijekom godine, tjedna i dana. Na primjer u zimi je manji broj parkiranja, u turističkim gradovima u ljeti više, u kontinentalnima manje, subotom ujutro više, u nedjelju navečer manje i sl. | David Milanović
+F06 | Machine Learning | Upotrebom Machine Learning probati naći zavisnosti između meteo uvjeta, parkiranja, tipa punionice, ponašanja ljudi, događaja u gradu i sl. Na primjer ako je nedjeljom navečer kiša ovaj parking je obično samo 30% pun. | Grgo Penava
+F07 | Algoritam predviđanja | Napraviti algoritam za traženje odstupanja od pravila, na primjer svako jutro radnim danom u ulici kod škole ima oko 200 parkiranja, danas je bilo 20 i to je odstupanje od trenda. | Ivan Ercegovac
+F08 | Algoritam odstupanja | Napraviti algoritam za predviđanje kolika je trenutna šansa da na nekom parkiralištu (ulica u gradu) nađemo slobodno parkirno mjesto sad trenutno | David Milanović
 
 ## Tehnologije i oprema
-Umjesto ovih uputa jasno popišite sve tehnologije, alate i opremu koju ćete koristiti pri implementaciji vašeg rješenja. Ne zaboravite planirati korištenje tehnologija u aktivnostima kao što su projektni menadžment ili priprema dokumentacije. Tehnologije koje ćete koristiti bi trebale biti javno dostupne, a ako ih ne budemo obrađivali na vježbama u vašoj dokumentaciji ćete morati navesti način preuzimanja, instaliranja i korištenja onih tehnologija koje su neopbodne kako bi se vaš programski proizvod preveo i pokrenuo. Pazite da svi alati koje ćete koristiti moraju imati odgovarajuću licencu.
+Visual Studio Community 2019, draw.io, GitHub, GitHub Classroom, SQLite, Visual Paradigm, MS Word
