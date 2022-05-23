@@ -15,15 +15,15 @@ Cilj izrade ove aplikacije je prikazivanje zauzetosti parkirnih mjesta u gradu. 
 ## Specifikacija projekta
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
------- | ----- | ----------- | -------------------
-F01 | Registracija | Korisnik se mora registrirati kako bi mogao pristupiti aplikaciji. Admini ne moraju odraditi registraciju te imaju pre-made račune. | Noel Zagorščak
-F02 | Login | Korisnik aplikacije mora se prijaviti kao običan korisnik ili admin.	 | Ivan Ercegovac
-F03 | Korisničko sučelje | Napravit API u C# koji periodički povlači podatke sa naše Parking Platforme putem REST API-ja i daje podatke o parkiranjima na parkirnim mjestima te napraviti mogućnost dodavanja posebnih događaja u gradu kada se mijenja frekvencija parkiranja | Noel Zagorščak
-F04 | Statistika | Napraviti osnovne statističke analize duljine parkiranja, broja parkiranja, po ulicama, po tipu. | Grgo Penava
-F05 | Analiza | Napraviti analize parkiranja tijekom godine, tjedna i dana. Na primjer u zimi je manji broj parkiranja, u turističkim gradovima u ljeti više, u kontinentalnima manje, subotom ujutro više, u nedjelju navečer manje i sl. | David Milanović
-F06 | Machine Learning | Upotrebom Machine Learning probati naći zavisnosti između meteo uvjeta, parkiranja, tipa punionice, ponašanja ljudi, događaja u gradu i sl. Na primjer ako je nedjeljom navečer kiša ovaj parking je obično samo 30% pun. | Grgo Penava
-F07 | Algoritam traženja | Napraviti algoritam za traženje odstupanja od pravila, na primjer svako jutro radnim danom u ulici kod škole ima oko 200 parkiranja, danas je bilo 20 i to je odstupanje od trenda. | Ivan Ercegovac
-F08 | Algoritam predviđanja | Napraviti algoritam za predviđanje kolika je trenutna šansa da na nekom parkiralištu (ulica u gradu) nađemo slobodno parkirno mjesto sad trenutno | David Milanović
+-| -| -| -
+F01 | Registracija | Korisnik se registrira kako bi mogao pratiti svoje prijašnje parkirne sesije | Noel Zagorščak
+F02 | Login | Korisnik se prijavljuje sa podacima sa kojima se registrirao kako bi dobio ulogu registriranog korisnika. | Ivan Ercegovac
+F03 | Korisničko sučelje | Korisničko sučelje je sigurno glavna softverska komponenta ovog projekta sa korisničkog gledišta. Naime, sučelje će se sastojati od nekoliko stranica . Prva stranica prikazuje glavnu funkcionalnost ove aplikacije, a to je prikaz parkirnih mjesta na karti. Korisnik se kursorom kreće po karti i vidi slobodna ili zauzeta mjesta. Odabirom parkirnog mjesta, otvara se dodatan izbornik u kojem su detaljnije informacije. Druga stranica unutar aplikacije jest statistika gdje su podaci o svim parkirnim mjestima ovisno o vremenu i meteorološkim podacima. Treća stranica sadrži algoritme traženja i predviđanja koji će grafički analizirati prikazanu statistiku i pokušati predvidjeti slobodna parkirna mjesta. | Noel Zagorščak
+F04 | Statistika | Statistička analiza prema različitim parametrima. Administrator objavljuje statističke podatke za različite parkirne zone. Iz ovih podataka razvit će se detaljna analiza. | Grgo Penava
+F05 | Analiza | Administrator pravi detaljnu analizu statističkih podataka, ovisno o meteorološkim podacima dostupnima u bazi podataka, ovisno o godišnjem dobu. Također moraju se uzeti u obzir i navike ljudi u gradu koji se analizira. Analiza se prikazuje grafovima različitih vrsta. | David Milanović
+F06 | Algoritam traženja | U algoritam će biti uneseni parametri prema kojima će algoritam, kada uzme podatke iz baze podataka u obzir, moći prepoznati odstupanja od trenda. Odnosno korisnik će preko algoritma moći prepoznati uzrok tog odstupanja.  | Ivan Ercegovac
+F07 | Algoritam predviđanja | Koristeći već unesene podatke za parkirna mjesta, uzimaju se ulice u kojima se nalaze te se koristeći podacima iz prošlosti predviđa koja je vjerojatnost da će ulica biti u potpunosti zauzeta, odnosno da će sva parkirna mjesta biti zauzeta. | Noel Zagorščak
+F08 | Algoritam predviđanja slobodnog mjesta | Slično prethodnom algoritmu, ovaj algoritam predviđanja uzima podatke iz baze i izražava kolika je mogućnost da je neko parkirno mjesto trenutno slobodno, mogućnost je izražena u postotku. | David Milanović
 
 ## Tehnologije i oprema
 Visual Studio Community 2022, draw.io, GitHub, GitHub Classroom, SQLite, Visual Paradigm, MS Word
