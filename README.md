@@ -22,7 +22,7 @@ F03 | Korisničko sučelje | Korisničko sučelje je sigurno glavna softverska k
 F04 | Statistika | Statistička analiza prema različitim parametrima. Administrator objavljuje statističke podatke za različite parkirne zone. Iz ovih podataka razvit će se detaljna analiza. | Grgo Penava
 F05 | Analiza | Administrator pravi detaljnu analizu statističkih podataka, ovisno o meteorološkim podacima dostupnima u bazi podataka, ovisno o godišnjem dobu. Također moraju se uzeti u obzir i navike ljudi u gradu koji se analizira. Analiza se prikazuje grafovima različitih vrsta. | David Milanović
 F06 | Algoritam traženja | U algoritam će biti uneseni parametri prema kojima će algoritam, kada uzme podatke iz baze podataka u obzir, moći prepoznati odstupanja od trenda. Odnosno korisnik će preko algoritma moći prepoznati uzrok tog odstupanja.  | Ivan Ercegovac
-F07 | Algoritam predviđanja | Koristeći već unesene podatke za parkirna mjesta, uzimaju se ulice u kojima se nalaze te se koristeći podacima iz prošlosti predviđa koja je vjerojatnost da će ulica biti u potpunosti zauzeta, odnosno da će sva parkirna mjesta biti zauzeta. | Noel Zagorščak
+F07 | Algoritam predviđanja | Koristeći već unesene podatke za parkirna mjesta, uzimaju se ulice u kojima se nalaze te se koristeći podacima iz prošlosti predviđa koja je vjerojatnost da će ulica biti u potpunosti zauzeta, odnosno da će sva parkirna mjesta biti zauzeta. | Grgo Penava
 F08 | Algoritam predviđanja slobodnog mjesta | Slično prethodnom algoritmu, ovaj algoritam predviđanja uzima podatke iz baze i izražava kolika je mogućnost da je neko parkirno mjesto trenutno slobodno, mogućnost je izražena u postotku. | David Milanović
 
 ## Tehnologije i oprema
