@@ -26,4 +26,4 @@ F07 | Algoritam traženja | Napraviti algoritam za traženje odstupanja od pravi
 F08 | Algoritam predviđanja | Napraviti algoritam za predviđanje kolika je trenutna šansa da na nekom parkiralištu (ulica u gradu) nađemo slobodno parkirno mjesto sad trenutno | David Milanović
 
 ## Tehnologije i oprema
-Visual Studio Community 2019, draw.io, GitHub, GitHub Classroom, SQLite, Visual Paradigm, MS Word
+Visual Studio Community 2022, draw.io, GitHub, GitHub Classroom, SQLite, Visual Paradigm, MS Word
