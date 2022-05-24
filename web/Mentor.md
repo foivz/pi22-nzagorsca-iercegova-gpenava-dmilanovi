@@ -1,1 +1,0 @@
-Povratne informacije mentora.
