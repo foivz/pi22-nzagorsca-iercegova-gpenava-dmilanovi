@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="PI_WBL" />
+    <meta name="description" content="FOI" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/glavni.css" />
+    <link rel="stylesheet" href="../css/prijavaIRegistracija.css" />
+    <title>Registracija</title>
+  </head>
+  <body>
+    <nav id="navigacija">
+      <a href="../index.html">POČETNA</a>
+      <a href="../statistika.html">STATISTIKA</a>
+      <a href="prijava.html">PRIJAVA</a>
+      <a href="#">REGISTRACIJA</a>
+    </nav>
+
+    <div class="formaPretrazi">
+      <h1>REGISTRACIJA</h1>
+
+      <form
+        id="registracijaKorisnika"
+        method="post"
+        name="registracijaKorisnika"
+      >
+        <p>
+          <input
+            type="text"
+            id="imeKorisnika"
+            name="imeKorisnika"
+            placeholder="IME"
+            required="required"
+          /><br />
+          <input
+            type="text"
+            id="prezimeKorisnika"
+            name="prezimeKorisnika"
+            placeholder="PREZIME"
+            required="required"
+          /><br />
+          <input
+            type="email"
+            id="emailKorisnika"
+            name="emailKorisnika"
+            placeholder="EMAIL"
+            required="required"
+          /><br />
+          <input
+            type="text"
+            id="korisnickoIme"
+            name="korisnickoIme"
+            placeholder="KORISNIČKO IME"
+            required="required"
+          />
+          <br />
+          <input
+            type="text"
+            id="lozinka"
+            name="lozinka"
+            placeholder="LOZINKA"
+            required="required"
+          /><br />
+          <input
+            type="text"
+            id="ponovljenaLozinka"
+            name="ponovljenaLozinka"
+            placeholder="PONOVITE LOZINKU"
+            required="required"
+          /><br />
+          <input
+            id="prijavaIRegistracijaKorisnika"
+            type="submit"
+            value="REGISTRACIJA"
+          />
+        </p>
+      </form>
+    </div>
+  </body>
+</html>

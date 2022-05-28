@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="PI_WBL" />
+    <meta name="description" content="FOI" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/glavni.css" />
+    <link rel="stylesheet" href="../css/prijavaIRegistracija.css" />
+    <title>Prijava</title>
+  </head>
+  <body id="tijeloPrijave">
+    <nav id="navigacija">
+      <a href="../index.html">POČETNA</a>
+      <a href="../statistika.html">STATISTIKA</a>
+      <a id="trenutni" href="#">PRIJAVA</a>
+      <a id="trenutniRegistracija" href="registracija.html">REGISTRACIJA</a>
+    </nav>
+
+    <div class="formaPretrazi">
+      <h1>PRIJAVA</h1>
+
+      <form id="prijavaKorisnika" method="get" name="prijavaKorisnika">
+        <p>
+          <input
+            type="text"
+            id="korisnickoIme"
+            name="korisnickoIme"
+            placeholder="KORISNIČKO IME"
+            required="required"
+          />
+          <br />
+          <input
+            type="text"
+            id="lozinka"
+            name="lozinka"
+            placeholder="LOZINKA"
+            required="required"
+          /><br />
+          <input
+            id="prijavaIRegistracijaKorisnika"
+            type="submit"
+            value="PRIJAVA"
+          /><br />
+        </p>
+      </form>
+    </div>
+  </body>
+</html>
