@@ -17,6 +17,13 @@ namespace PodaciIzBaze.Services
                 return parkingSpaces;
             }
         }
-
+        public List<TmpParkingSpace> GetSpecificParkingSpace(int id)
+        {
+            using (var context = new PI2201_DBContext())
+            {
+                var parkingSpaces = context.TmpParkingSpaces.Where(x => x.PspParkingSpaceId == id).ToList();
+                return (List<TmpParkingSpace>)parkingSpaces;
+            }
+        }
     }
 }
