@@ -79,6 +79,13 @@ namespace testWebApi.Controllers
             GetUsers();
         }
 
+        [HttpGet]
+        [Route("allUsers")]
+        public async Task<ActionResult<List<TmpUser>>> GetUsers()
+        {
+            return _parkingUserService.GetAllParkingUsers();
+        }
+
     }
 }
 
