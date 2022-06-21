@@ -17,5 +17,13 @@ namespace PodaciIzBaze.Services
             }
         }
 
+        public List<TmpParkingSession> GetSpecificParkingSession(int id)
+        {
+            using (var context = new PI2201_DBContext())
+            {
+                var parkingSessions = context.TmpParkingSessions.Where(x => x.PssParkingSessionId == id).ToList();
+                return (List<TmpParkingSession>)parkingSessions;
+            }
+        }
     }
 }
