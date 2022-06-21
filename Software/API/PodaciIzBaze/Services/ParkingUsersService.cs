@@ -15,5 +15,13 @@ namespace PodaciIzBaze.Services
                 context.TmpUsers.Add(user);
             }
         }
+        public List<TmpUser> GetAllParkingUsers()
+        {
+            using (var context = new PI2201_DBContext())
+            {
+                var parkingUsers = context.TmpUsers.ToList();
+                return parkingUsers;
+            }
+        }
     }
 }
