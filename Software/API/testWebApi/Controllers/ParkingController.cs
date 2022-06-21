@@ -86,6 +86,13 @@ namespace testWebApi.Controllers
             return _parkingUserService.GetAllParkingUsers();
         }
 
+        [HttpGet]
+        [Route("allParkingSensors")]
+        public async Task<ActionResult<List<TmpSensor>>> GetParkingSensors()
+        {
+            return _parkingSensorService.GetAllParkingSensors();
+        }
+
     }
 }
 
