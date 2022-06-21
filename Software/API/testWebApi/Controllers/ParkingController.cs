@@ -64,6 +64,13 @@ namespace testWebApi.Controllers
             return _parkingSpotService.GetSpecificParkingSpot(Id);
         }
 
+        [HttpGet]
+        [Route("ParkingSpotsForParkingSpaces")]
+        public async Task<ActionResult<List<TmpParkingSpot>>> GetParkingSpotsForParkingSpaces(int Id)
+        {
+            return _parkingSpotService.GetSpecificParkingSpotForParkingSpace(Id);
+        }
+
     }
 }
 
