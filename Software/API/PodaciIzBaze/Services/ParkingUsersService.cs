@@ -23,5 +23,14 @@ namespace PodaciIzBaze.Services
                 return parkingUsers;
             }
         }
+
+        public List<TmpUser> GetSpecificUser(int user_Id, string lozinka)
+        {
+            using (var context = new PI2201_DBContext())
+            {
+                var users = context.TmpUsers.Where(x => x.UserId == user_Id && x.Lozinka == lozinka).ToList();
+                return (List<TmpUser>)users;
+            }
+        }
     }
 }
