@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PodaciIzBaze.Models;
-using PodaciIzBaze.Services;
+using WebAPI.Repository.Models;
+using WebAPI.Services;
 
 namespace WebAPI.Controllers
 {

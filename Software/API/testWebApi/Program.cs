@@ -1,5 +1,5 @@
 global using Microsoft.EntityFrameworkCore;
-using PodaciIzBaze.Services;
+using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
