@@ -4,6 +4,8 @@ using WebAPI.Services;
 
 namespace WebAPI.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : Controller
     {
         private readonly ParkingSpaceService _parkingSpaceService;
