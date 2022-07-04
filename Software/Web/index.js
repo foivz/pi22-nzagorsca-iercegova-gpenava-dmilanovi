@@ -1,45 +1,44 @@
 // Initialize and add the map
 function initMap() {
-  // The location of Uluru
-  const uluru = { lat: 42.650537, lng: 18.091115 };
-  // The map, centered at Uluru
+  const uluru = { lat: 42.651375, lng: 18.091252 };
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
     center: uluru,
   });
-  const iconbase = 'ikonica.png';
-  // The marker, positioned at Uluru
-  const marker1 = new google.maps.Marker({
-    position: { lat: 42.650537, lng: 18.091115 },
-    map: map,
-    icon: iconbase,
-  });
-  const markerIzaGrada = new google.maps.Marker({
-    position: { lat: 42.64238, lng: 18.112 },
-    map: map,
-    icon: iconbase,
-  });
-  const markerZicara = new google.maps.Marker({
-    position: { lat: 42.6429, lng: 18.11165 },
-    map: map,
-    icon: iconbase,
-  });
-  const marker4 = new google.maps.Marker({
-    position: { lat: 42.64238, lng: 18.112 },
-    map: map,
-    icon: iconbase,
-  });
-  const marker5 = new google.maps.Marker({
-    position: { lat: 42.64238, lng: 18.112 },
-    map: map,
-    icon: iconbase,
-  });
-  const marker6 = new google.maps.Marker({
-    position: { lat: 42.64238, lng: 18.112 },
-    map: map,
-    icon: iconbase,
+  const plava = 'ikonica.png';
+  const crvena = 'crvena-ikona.png';
+  const zelena = 'zelena-ikona.png';
+
+  Promise.any([userAction()])
+  .then( markers => {
+    for(var i=0; i<markers.length-1;i++)
+  {
+    console.log("markers[i]",markers[i]);
+    const marker6 = new google.maps.Marker({
+      position: { lat: markers[i].sptLatitude, lng: markers[i].sptLongitude },
+      map: map,
+      icon: plava,
+    });
+  }
+  })
+  .catch( error => {
+    console.error("Failed to fetch")
   });
 
 }
 
+const userAction = async () => {
+  const response = await fetch('https://localhost:7236/api/Parking/allParkingSpots', {
+    method: 'GET',
+   // body: myBody, // string or object
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const myJson = await response.json(); //extract JSON from the http response
+  // do something with myJson
+
+  return myJson;
+  
+}
 window.initMap = initMap;
