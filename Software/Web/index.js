@@ -14,11 +14,22 @@ function initMap() {
     for(var i=0; i<markers.length-1;i++)
   {
     console.log("markers[i]",markers[i]);
-    const marker6 = new google.maps.Marker({
-      position: { lat: markers[i].sptLatitude, lng: markers[i].sptLongitude },
-      map: map,
-      icon: plava,
-    });
+    if(markers[i].sptOccupied == true)
+    {
+      const marker6 = new google.maps.Marker({
+        position: { lat: markers[i].sptLatitude, lng: markers[i].sptLongitude },
+        map: map,
+        icon: crvena,
+      });
+    }else
+    {
+      const marker6 = new google.maps.Marker({
+        position: { lat: markers[i].sptLatitude, lng: markers[i].sptLongitude },
+        map: map,
+        icon: zelena,
+      });
+    }
+    
   }
   })
   .catch( error => {
