@@ -1,29 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="PiWBL" />
+  <meta name="description" content="FOI" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/glavni.css" />
+  <link rel="stylesheet" href="css/katalog.css" />
+  <title>Statistika</title>
+</head>
+
+<body id="tijeloPrijave">
+  <nav id="navigacija">
+    <a href="index.html">POČETNA</a>
+    <a id="trenutni" href="#">STATISTIKA</a>
+    <a href="obrasci/prijava.html">PRIJAVA</a>
+    <a id="trenutniRegistracija" href="obrasci/registracija.html">REGISTRACIJA</a>
+  </nav>
+
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="PiWBL" />
-    <meta name="description" content="FOI" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/glavni.css" />
-    <link rel="stylesheet" href="css/katalog.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
     <title>Statistika</title>
+    <script>
+      $(function () {
+        new Chart(document.getElementById("prvi"), {
+          type: 'bar',
+          data: {
+            labels: ["6342", "Asia", "Europe", "Latin America", "North America","6342", "Asia", "Europe", "Latin America", "North America","6342", "Asia", "Europe", "Latin America", "North America"],
+            datasets: [
+              {
+                label: "Population (millions)",
+                backgroundColor: "#3e95cd",
+                data: [5, 6, 7, 8, 10, 5, 6, 7, 8, 10, 5, 6, 7, 8, 10, ]
+              }
+            ]
+          },
+          options: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'NASLOV1'
+            },
+            
+          }
+        });
+        var broj1 = 60;
+        var ctx_2 = document.getElementById("drugi").getContext('2d');
+        var data_2 = {
+          datasets: [{
+            data: [broj1, 20, 30],
+            backgroundColor: [
+              '#3c8dbc',
+              '#f56954',
+              '#f39c12',
+            ],
+          }],
+          labels: [
+            'DVA',
+            'dva',
+            'tri'
+          ]
+        };
+        var myDoughnutChart_2 = new Chart(ctx_2, {
+          type: 'doughnut',
+          data: data_2,
+          options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            legend: {
+              position: 'bottom',
+              labels: {
+                boxWidth: 12
+              }
+            }
+          }
+        });
+        new Chart(document.getElementById("treci"), {
+          type: 'bar',
+          data: {
+            labels: ["Africa", "Asia", "Europe", "Latin America", "North America","Africa", "Asia", "Europe", "Latin America", "North America"],
+            datasets: [
+              {
+                label: "Population (millions)",
+                backgroundColor: "#3e95cd",
+                data: [5, 6, 7, 8, 15, 5, 6, 7, 8, 15]
+              }
+            ]
+          },
+          options: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'NASLOV1'
+            },
+            
+          }
+        });
+        var ctx_4 = document.getElementById("cetvrti").getContext('2d');
+        var data_4 = {
+          datasets: [{
+            data: [30, 20, 30],
+            backgroundColor: [
+              '#3c8dbc',
+              '#f56954',
+              '#f39c12',
+            ],
+          }],
+          labels: [
+            'ggggg',
+            'dva',
+            'tri'
+          ]
+        };
+        var myDoughnutChart_4 = new Chart(ctx_4, {
+          type: 'pie',
+          data: data_2,
+          options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            legend: {
+              position: 'bottom',
+              labels: {
+                boxWidth: 12
+              }
+            }
+          }
+        });
+      });
+
+    </script>
   </head>
-  <body id="tijeloPrijave">
-    <nav id="navigacija">
-      <a href="index.html">POČETNA</a>
-      <a id="trenutni" href="#">STATISTIKA</a>
-      <a href="obrasci/prijava.html">PRIJAVA</a>
-      <a id="trenutniRegistracija" href="obrasci/registracija.html"
-        >REGISTRACIJA</a
-      >
-    </nav>
+
+  <body>
+    <div class="container">
+      <div class="klasa1">
+        <canvas id="prvi" width="700px" height="240px"></canvas>
+      </div>
+      <div class="klasa2">
+        <canvas id="drugi" width="240px" height="240px"></canvas>
+      </div>
+      <div class="klasa3">
+        <canvas id="treci" width="700px" height="240px"></canvas>
+      </div>
+    </div>
   </body>
+</body>
+
 </html>
