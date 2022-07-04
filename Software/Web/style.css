@@ -1,8 +1,12 @@
 #map {
-  height: 600px;
+  height: 700px;
   /* The height is 400 pixels */
-  width: 50%;
+  width: 80%;
   top: 100px;
   left: 200px;
   /* The width is the width of the web page */
+}
+.klasa1{
+  margin: 50px;
+  top: 500px;
 }
