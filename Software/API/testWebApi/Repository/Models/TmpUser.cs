@@ -34,5 +34,9 @@ namespace WebAPI.Repository.Models
         [StringLength(50)]
         [Unicode(false)]
         public string TipKorisnika { get; set; } = null!;
+        [Column("username")]
+        [StringLength(50)]
+        [Unicode(false)]
+        public string? Username { get; set; }
     }
 }

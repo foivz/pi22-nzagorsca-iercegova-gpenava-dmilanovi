@@ -12,13 +12,14 @@ namespace WebAPI.Repository
         {
         }
 
-        public PI2201_DBContext(DbContextOptions<DbContext> options)
+        public PI2201_DBContext(DbContextOptions<PI2201_DBContext> options)
             : base(options)
         {
         }
 
         public virtual DbSet<MlTablica> MlTablicas { get; set; } = null!;
-        public virtual DbSet<TmpParkingSession> TmpParkingSessions { get; set; } = null!;
+        public virtual DbSet<ParkingSession> ParkingSessions { get; set; } = null!;
+        public virtual DbSet<TmpMetereoloskiPodaci> TmpMetereoloskiPodacis { get; set; } = null!;
         public virtual DbSet<TmpParkingSpace> TmpParkingSpaces { get; set; } = null!;
         public virtual DbSet<TmpParkingSpot> TmpParkingSpots { get; set; } = null!;
         public virtual DbSet<TmpSensor> TmpSensors { get; set; } = null!;
@@ -35,6 +36,23 @@ namespace WebAPI.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ParkingSession>(entity =>
+            {
+                entity.Property(e => e.PssParkingSessionId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<TmpMetereoloskiPodaci>(entity =>
+            {
+                entity.HasKey(e => e.IdPodatka)
+                    .HasName("PK_dbo.tmp_metereoloski_podaci");
+
+                entity.Property(e => e.IdPodatka).ValueGeneratedNever();
+
+                entity.Property(e => e.Cloudcover).IsFixedLength();
+
+                entity.Property(e => e.Visibility).IsFixedLength();
+            });
+
             modelBuilder.Entity<TmpSensor>(entity =>
             {
                 entity.Property(e => e.SnrBleMac).IsFixedLength();
