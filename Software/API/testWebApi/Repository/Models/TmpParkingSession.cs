@@ -6,19 +6,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Repository.Models
 {
-    [Keyless]
-    [Table("tmp_parking_session")]
+    [Table("parking_sessions")]
     public partial class TmpParkingSession
     {
+        [Key]
         [Column("pss_parking_session_id")]
-        public long PssParkingSessionId { get; set; }
+        public int PssParkingSessionId { get; set; }
         [Column("pss_sensor_id")]
-        public long? PssSensorId { get; set; }
+        public short? PssSensorId { get; set; }
         [Column("pss_parking_spot_id")]
-        public long? PssParkingSpotId { get; set; }
+        public short? PssParkingSpotId { get; set; }
         [Column("pss_start_time")]
-        public DateTimeOffset? PssStartTime { get; set; }
+        [StringLength(50)]
+        public string? PssStartTime { get; set; }
         [Column("pss_end_time")]
-        public DateTimeOffset? PssEndTime { get; set; }
+        [StringLength(50)]
+        public string? PssEndTime { get; set; }
     }
 }

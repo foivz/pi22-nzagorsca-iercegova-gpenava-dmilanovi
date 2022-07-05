@@ -18,7 +18,7 @@ namespace WebAPI.Repository
         }
 
         public virtual DbSet<MlTablica> MlTablicas { get; set; } = null!;
-        public virtual DbSet<ParkingSession> ParkingSessions { get; set; } = null!;
+        public virtual DbSet<TmpParkingSession> ParkingSessions { get; set; } = null!;
         public virtual DbSet<TmpMetereoloskiPodaci> TmpMetereoloskiPodacis { get; set; } = null!;
         public virtual DbSet<TmpParkingSpace> TmpParkingSpaces { get; set; } = null!;
         public virtual DbSet<TmpParkingSpot> TmpParkingSpots { get; set; } = null!;
@@ -36,7 +36,7 @@ namespace WebAPI.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ParkingSession>(entity =>
+            modelBuilder.Entity<TmpParkingSession>(entity =>
             {
                 entity.Property(e => e.PssParkingSessionId).ValueGeneratedNever();
             });
