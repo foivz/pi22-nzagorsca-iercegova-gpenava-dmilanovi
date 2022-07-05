@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("tipParkirnihMjesta")]
-        public string GetParkingSpots()
+        public async Task<ActionResult<List<string>>> GetParkingSpots()
         {
             var parkirniSpotovi = _parkingSpotService.GetAllParkingSpots();
             int brojRegular = 0;
@@ -70,7 +70,9 @@ namespace WebAPI.Controllers
                 else
                     brojHendikep++;
             }
-            string parkirnaMjesta = brojRegular + ";" + brojHendikep;
+            List<string> parkirnaMjesta = new List<string>();
+            string unos = brojRegular + ";" + brojHendikep;
+            parkirnaMjesta.Add(unos);
             return parkirnaMjesta;
         }
 
