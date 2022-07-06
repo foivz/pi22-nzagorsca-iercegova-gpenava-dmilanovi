@@ -18,6 +18,26 @@ namespace WebAPI.Services
                 return parkingSessions;
             }
         }
+        public List<TmpParkingSession> GetParkingSessionsPerParkingSpotWithDate(int id, string vrijeme)
+        {
+            using (var context = new PI2201_DBContext())
+            {
+                var parkingSessions = context.ParkingSessions.Where(x => x.PssParkingSpotId == id).ToList();
+                List<TmpParkingSession> zaVratiti = new List<TmpParkingSession>();
+                foreach (var item in parkingSessions)
+                {
+                    string[] datumItema = item.PssStartTime.Split(' ');
+                    for(int i = 0; i < 1; i++)
+                    {
+                        string[] godinaMjesecDan = datumItema[i].Split('-');
+                        string[] prosljedeniGodinaMjesecDan = vrijeme.ToString().Split('-');
+                        if (godinaMjesecDan[1] == prosljedeniGodinaMjesecDan[1] && godinaMjesecDan[2] == prosljedeniGodinaMjesecDan[2])
+                            zaVratiti.Add(item);
+                    }
+                }
+                return zaVratiti;
+            }
+        }
 
         public List<TmpParkingSession> GetSpecificParkingSession(int id)
         {
