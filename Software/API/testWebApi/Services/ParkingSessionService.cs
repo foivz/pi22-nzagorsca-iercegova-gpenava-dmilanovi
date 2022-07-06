@@ -38,13 +38,14 @@ namespace WebAPI.Services
                 return zaVratiti;
             }
         }
-
+        //ZA DORADITI
         public List<string> GetAvailableParkingSpotsPerDate(string vrijeme)
         {
             using (var context = new PI2201_DBContext())
             {
                 var parkingSessions = context.ParkingSessions.Where(x => x.PssStartTime.StartsWith(vrijeme)).ToList();
                 var parkingSpots = context.TmpParkingSpots.ToList();
+                List<string> idjevi = new List<string>();
                 //string[] vrijemeProsljedeno = vrijeme.Split('T');
                 List<string> zaVratiti = new List<string>();
                 foreach (var item in parkingSpots)
@@ -52,16 +53,18 @@ namespace WebAPI.Services
                     foreach (var item2 in parkingSessions)
                     {
                         string zaListu = "";
-                        if(item.SptParkingSpotId == item2.PssParkingSpotId)
-                        {
-                            zaListu = item.SptParkingSpotId.ToString() + ";" + 1;
-                            zaVratiti.Add(zaListu);
-                        }
-                        else
-                        {
-                            zaListu = item.SptParkingSpotId.ToString() + ";" + 0;
-                            zaVratiti.Add(zaListu);
-                        }
+                        zaListu = item2.PssParkingSpotId.ToString() + ";" + 1;
+                        if(!idjevi.Contains(item2.PssParkingSpotId.ToString()))
+                            idjevi.Add(item2.PssParkingSpotId.ToString());
+                        zaVratiti.Add(zaListu);
+                    }
+                }
+                foreach (var item in parkingSpots)
+                {
+                    if (!idjevi.Contains(item.SptParkingSpotId.ToString()))
+                    {
+                        string zaListu = "";
+                        zaListu = item.SptParkingSpotId.ToString() + ";" + 0;
                     }
                 }
                 return zaVratiti;
