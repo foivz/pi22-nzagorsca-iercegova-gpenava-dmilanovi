@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    
+
     <script type="module" src="./index.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,8 +15,35 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/glavni.css" />
     <link rel="stylesheet" href="css/pocetnaStranica.css" />
+    <script>
+      const userAction = async () => {
+        var datum = document.getElementById("datumPocetna").value;
+        console.log(datum);
+        const response3 = await fetch(
+          "https://localhost:7236/api/Parking/parkingSessionsPerDate?vrijeme=" +
+            datum,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const myJson3 = await response3.json();
+
+        return myJson3;
+      };
+      function dodaj() {
+        Promise.allSettled([userAction()]).then((podaci3) => {
+          $(function () {
+            console.log(podaci3);
+          });
+        });
+      }
+    </script>
     <title>Parkirna mjesta</title>
   </head>
   <body>
@@ -28,6 +55,37 @@
         >REGISTRACIJA</a
       >
     </nav>
+    <div>
+      <input
+        type="text"
+        id="ukupanBrojMjestaPocetna"
+        name="ukupanBrojMjestaPocetna"
+        style="margin-left: 33%; padding-right: 100px; width: 25px"
+        disabled
+      />
+      <input
+        type="text"
+        id="brojSlobodnihMjestaPocetna"
+        name="brojSlobodnihMjestaPocetna"
+        style="margin-left: 10px; padding-right: 100px; width: 25px"
+        disabled
+      />
+      <input
+        type="text"
+        id="brojZauzetihhMjestaPocetna"
+        name="brojZauzetihMjestaPocetna"
+        style="margin-left: 10px; padding-right: 100px; width: 25px"
+        disabled
+      />
+      <input
+        type="datetime-local"
+        id="datumPocetna"
+        name="datumPocetna"
+        onchange="dodaj()"
+        value="2021-01-01T00:00"
+        style="margin-left: 10px; padding-right: 25px"
+      />
+    </div>
     <div id="map"></div>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script
