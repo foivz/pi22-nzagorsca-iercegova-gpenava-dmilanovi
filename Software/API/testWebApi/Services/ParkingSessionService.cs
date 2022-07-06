@@ -31,17 +31,12 @@ namespace WebAPI.Services
         {
             using (var context = new PI2201_DBContext())
             {
-                var parkingSpots = context.TmpParkingSpots.ToList();
-                List<TmpParkingSpot> parkingSpotsZaParkirniSpace = new List<TmpParkingSpot>();
+                var parkingSpotsZaParkirniSpace = context.TmpParkingSpots.Where(x => x.SptParkingSpaceId == id).ToList();
                 List<TmpParkingSession> parkingSessionsZaParkirniSpace = new List<TmpParkingSession>();
-                foreach (var item in parkingSpots)
-                {
-                    if (item.SptParkingSpaceId == id)
-                        parkingSpotsZaParkirniSpace.Add(item);
-                }
                 foreach (var item in parkingSpotsZaParkirniSpace)
                 {
-                    var parkingSessions = context.ParkingSessions.Where(x => x.PssParkingSpotId == item.SptParkingSpotId).ToList();
+                    List<TmpParkingSession> parkingSessions = new List<TmpParkingSession>();
+                    parkingSessions = context.ParkingSessions.Where(x => x.PssParkingSpotId == item.SptParkingSpotId).ToList();
                     foreach (var item2 in parkingSessions)
                     {
                         parkingSessionsZaParkirniSpace.Add(item2);
