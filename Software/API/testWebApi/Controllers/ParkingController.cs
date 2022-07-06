@@ -93,23 +93,6 @@ namespace testWebApi.Controllers
         {
             return _parkingSpotService.GetSpecificParkingSpotForParkingSpace(Id);
         }
-
-        [HttpPost]
-        [Route("addUser")]
-        public async void AddNewUser([FromBody] TmpUser User)
-        {
-            _parkingUserService.AddNewUser(User);
-            GetUsers();
-        }
-
-        [HttpGet]
-        [Route("allUsers")]
-        public async Task<ActionResult<List<TmpUser>>> GetUsers()
-        {
-            return _parkingUserService.GetAllParkingUsers();
-        }
-
-
     }
 }
 

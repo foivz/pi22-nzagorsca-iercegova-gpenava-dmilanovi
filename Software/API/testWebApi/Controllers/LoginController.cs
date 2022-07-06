@@ -28,5 +28,21 @@ namespace WebAPI.Controllers
         {
             return _parkingUserService.GetSpecificUser(user_Id, lozinka);
         }
+
+        [HttpGet]
+        [Route("allUsers")]
+        public async Task<ActionResult<List<TmpUser>>> GetUsers()
+        {
+            return _parkingUserService.GetAllParkingUsers();
+        }
+
+
+        [HttpPost]
+        [Route("addUser")]
+        public async void AddNewUser([FromBody] TmpUser User)
+        {
+            _parkingUserService.AddNewUser(User);
+            GetUsers();
+        }
     }
 }

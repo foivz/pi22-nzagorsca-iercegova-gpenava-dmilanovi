@@ -23,7 +23,7 @@ namespace WebAPI.Services
             using (var context = new PI2201_DBContext())
             {
                 var parkingSpaces = context.TmpParkingSpaces.Where(x => x.PspParkingSpaceId == id).ToList();
-                return (List<TmpParkingSpace>)parkingSpaces;
+                return (List<TmpParkingSpace>) parkingSpaces;
             }
         }
     }
