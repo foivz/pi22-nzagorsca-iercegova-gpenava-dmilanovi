@@ -20,7 +20,10 @@ builder.Services.AddCors(options =>
                       policy =>
                       {
                           policy.WithOrigins("https://localhost:7236/",
-                                              "https://localhost:7236/api/", "https://localhost:7236/api/Parking/allParkingSpots", "http://127.0.0.1:5500")
+                                              "https://localhost:7236/api/",
+                                              "https://localhost:7236/api/Parking/allParkingSpots",
+                                              "http://127.0.0.1:5500",
+                                              "https://localhost:7236/api/Parking/parkingSessionsPerDate")
                           .AllowAnyMethod()
                           .WithHeaders("content-type");
                       });
