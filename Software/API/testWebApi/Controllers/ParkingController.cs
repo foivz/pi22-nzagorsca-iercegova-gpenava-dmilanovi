@@ -45,10 +45,26 @@ namespace testWebApi.Controllers
 
         [HttpGet]
         [Route("parkingSessionsPerParkingSpotWithinDate")]
-        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerParkingSpot(int id, string vrijeme)
+        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerParkingSpotWithinDate(int id, string vrijeme)
         {
             return _parkingSessionService.GetParkingSessionsPerParkingSpotWithDate(id, vrijeme);
         }
+
+
+        [HttpGet]
+        [Route("availableParkingSpotsPerDate")]
+        public async Task<ActionResult<List<string>>> GetAvailableParkingSpotsPerDate(string vrijeme)
+        {
+            return _parkingSessionService.GetAvailableParkingSpotsPerDate(vrijeme);
+        }
+
+        [HttpGet]
+        [Route("parkingSessionsPerDate")]
+        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerDate(string vrijeme)
+        {
+            return _parkingSessionService.GetParkingSessionsPerDate(vrijeme);
+        }
+
 
         [HttpGet]
         [Route("specificParkingSession")]
