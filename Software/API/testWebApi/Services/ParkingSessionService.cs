@@ -43,7 +43,7 @@ namespace WebAPI.Services
         {
             using (var context = new PI2201_DBContext())
             {
-                var parkingSessions = context.ParkingSessions.Where(x => x.PssStartTime.StartsWith(vrijeme)).ToList();
+                var parkingSessions = GetParkingSessionsPerDate(vrijeme);
                 var parkingSpots = context.TmpParkingSpots.ToList();
                 List<string> idjevi = new List<string>();
                 //string[] vrijemeProsljedeno = vrijeme.Split('T');
@@ -75,8 +75,23 @@ namespace WebAPI.Services
         {
             using (var context = new PI2201_DBContext())
             {
-                var parkingSessions = context.ParkingSessions.Where(x => x.PssStartTime.StartsWith(vrijeme)).ToList();
-                return parkingSessions;
+                string[] razdvojenoVrijeme = vrijeme.Split('T');
+                string[] razdvojeniSatIMinute = razdvojenoVrijeme[1].Split(':');
+                var parkingSessions = context.ParkingSessions.Where(x => x.PssStartTime.StartsWith(razdvojenoVrijeme[0] + " " + razdvojeniSatIMinute[0])).ToList();
+                List<TmpParkingSession> vratiSesije = new List<TmpParkingSession>();
+                foreach (var item in parkingSessions)
+                {
+                    string[] razdvojenItemStart = item.PssStartTime.Split(' ');
+                    string[] potrebniSatIMinuteStart = razdvojenItemStart[1].Split(':');
+                    string[] razdvojenItemEnd = item.PssEndTime.Split(' ');
+                    string[] potrebniSatIMinuteEnd = razdvojenItemEnd[1].Split(':');
+                    if(((int.Parse(potrebniSatIMinuteStart[0]) <= int.Parse(razdvojeniSatIMinute[0])) && (int.Parse(potrebniSatIMinuteStart[1]) <= int.Parse(razdvojeniSatIMinute[1])))
+                        || ((int.Parse(potrebniSatIMinuteEnd[0]) >= int.Parse(razdvojeniSatIMinute[0])) && (int.Parse(potrebniSatIMinuteStart[1]) >= int.Parse(razdvojeniSatIMinute[1]))))
+                    {
+                        vratiSesije.Add(item);
+                    }
+                }
+                return vratiSesije;
             }
         }
 
