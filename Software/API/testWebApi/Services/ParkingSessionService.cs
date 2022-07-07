@@ -76,19 +76,43 @@ namespace WebAPI.Services
             using (var context = new PI2201_DBContext())
             {
                 string[] razdvojenoVrijeme = vrijeme.Split('T');
+                string[] razdvojenProsljedeniDatum = razdvojenoVrijeme[0].Split('-');
                 string[] razdvojeniSatIMinute = razdvojenoVrijeme[1].Split(':');
-                var parkingSessions = context.ParkingSessions.Where(x => x.PssStartTime.StartsWith(razdvojenoVrijeme[0] + " " + razdvojeniSatIMinute[0])).ToList();
+
+                var parkingSessions = context.ParkingSessions.Where(x => x.PssStartTime.Contains(razdvojenoVrijeme[0])).ToList();
                 List<TmpParkingSession> vratiSesije = new List<TmpParkingSession>();
                 foreach (var item in parkingSessions)
                 {
                     string[] razdvojenItemStart = item.PssStartTime.Split(' ');
                     string[] potrebniSatIMinuteStart = razdvojenItemStart[1].Split(':');
-                    string[] razdvojenItemEnd = item.PssEndTime.Split(' ');
-                    string[] potrebniSatIMinuteEnd = razdvojenItemEnd[1].Split(':');
-                    if(((int.Parse(potrebniSatIMinuteStart[0]) <= int.Parse(razdvojeniSatIMinute[0])) && (int.Parse(potrebniSatIMinuteStart[1]) <= int.Parse(razdvojeniSatIMinute[1])))
-                        || ((int.Parse(potrebniSatIMinuteEnd[0]) >= int.Parse(razdvojeniSatIMinute[0])) && (int.Parse(potrebniSatIMinuteStart[1]) >= int.Parse(razdvojeniSatIMinute[1]))))
+                    string[] razdvojenItemEnd;
+                    string[] potrebniSatIMinuteEnd;
+                    if (item.PssEndTime != null)
                     {
-                        vratiSesije.Add(item);
+                        razdvojenItemEnd = item.PssEndTime.Split(' ');
+                        potrebniSatIMinuteEnd = razdvojenItemEnd[1].Split(':');
+                    } else
+                    {
+                        razdvojenItemEnd = item.PssStartTime.Split(' ');
+                        potrebniSatIMinuteEnd = razdvojenItemEnd[1].Split(':');
+                    }
+
+                    string[] razdvojenDatumItemaStart = razdvojenItemStart[0].Split('-');
+                    string[] razdvojenDatumItemaEnd = razdvojenItemEnd[0].Split('-');
+                    if (((int.Parse(potrebniSatIMinuteStart[0]) <= int.Parse(razdvojeniSatIMinute[0])) && (int.Parse(potrebniSatIMinuteStart[1]) <= int.Parse(razdvojeniSatIMinute[1])))
+|| ((int.Parse(potrebniSatIMinuteEnd[0]) >= int.Parse(razdvojeniSatIMinute[0])) && (int.Parse(potrebniSatIMinuteStart[1]) >= int.Parse(razdvojeniSatIMinute[1]))))
+                    {
+                        bool postoji = false;
+                            for (int i = 0; i < vratiSesije.Count; i++)
+                            {
+                                if (vratiSesije[i].PssParkingSpotId == item.PssParkingSpotId)
+                                {
+                                    postoji = true;
+                                    break;
+                                }
+                            }
+                            if (!postoji)
+                                vratiSesije.Add(item);
                     }
                 }
                 return vratiSesije;
