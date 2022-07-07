@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/glavni.css" />
     <link rel="stylesheet" href="css/pocetnaStranica.css" />
     <script>
-      const userAction = async () => {
+      const userAction3 = async () => {
         var datum = document.getElementById("datumPocetna").value;
         console.log(datum);
         const response3 = await fetch(
@@ -37,7 +37,7 @@
         return myJson3;
       };
       function dodaj() {
-        Promise.allSettled([userAction()]).then((podaci3) => {
+        Promise.allSettled([userAction3()]).then((podaci3) => {
           $(function () {
             console.log(podaci3);
           });
