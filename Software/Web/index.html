@@ -29,27 +29,74 @@
         >REGISTRACIJA</a
       >
     </nav>
-    <div>
+    <div style="margin-top: -20px">
+      <label
+        style="
+          margin-left: 25%;
+          padding-right: 10px;
+          color: #b3b3b3;
+          font-size: 19px;
+        "
+      >
+        Ukupan broj mjesta:
+      </label>
+      <label
+        style="
+          margin-left: 59px;
+          padding-right: 10px;
+          color: #b3b3b3;
+          font-size: 19px;
+        "
+      >
+        Broj slobodnih mjesta:
+      </label>
+      <label
+        style="
+          margin-left: 41px;
+          padding-right: 10px;
+          color: #b3b3b3;
+          font-size: 19px;
+        "
+      >
+        Broj zauzetih mjesta:
+      </label>
+      <label
+        style="
+          margin-left: 51px;
+          padding-right: 10px;
+          color: #b3b3b3;
+          font-size: 19px;
+        "
+      >
+        Odaberite datum:
+      </label>
+      <br /><br />
       <input
         type="text"
         id="ukupanBrojMjestaPocetna"
-        placeholder="Ukupan broj mjesta"
         name="ukupanBrojMjestaPocetna"
-        style="margin-left: 19%; padding-right: 10px"
+        style="margin-left: 25%; padding-right: 10px"
       />
+
       <input
         type="text"
         id="brojSlobodnihMjestaPocetna"
-        placeholder="Broj slobodnih mjesta"
         name="brojSlobodnihMjestaPocetna"
-        style="margin-left: 10px; padding-right: 10px"
+        style="
+          margin-left: 15px;
+          padding-right: 10px;
+          background-color: rgb(112, 168, 112);
+        "
       />
       <input
         type="text"
         id="brojZauzetihhMjestaPocetna"
-        placeholder="Broj zauzetih mjesta"
         name="brojZauzetihMjestaPocetna"
-        style="margin-left: 10px; padding-right: 10px"
+        style="
+          margin-left: 15px;
+          padding-right: 10px;
+          background-color: rgb(165, 80, 80);
+        "
       />
       <input
         type="datetime-local"
@@ -57,10 +104,29 @@
         name="datumPocetna"
         onchange="initMap()"
         value="2021-01-01T00:00"
-        style="margin-left: 10px; padding-right: 25px"
+        style="margin-left: 15px; padding-right: 25px"
       />
     </div>
-    <div id="map"></div>
+    <!-- <div style="display: flex; gap: 0px; justify-content: flex-start"> -->
+    <!-- <div
+        id="parkirniSpaceovi"
+        style="
+          margin: 0;
+          padding: 0;
+          background-color: red;
+          padding: 0%;
+          margin-top: 32px;
+          margin-left: 20px;
+          height: 703px;
+          width: 300px;
+          margin-right: -180px;
+        "
+      ></div> -->
+    <div
+      id="map"
+      style="margin-right: 11%; margin-top: -65px; margin-right: 20px"
+    ></div>
+    <!-- </div> -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfMa5FbvPRXZMN_ItcASp8qvXM74buvgA&callback=initMap&v=weekly"

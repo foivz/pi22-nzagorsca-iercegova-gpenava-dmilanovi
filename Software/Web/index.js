@@ -13,12 +13,12 @@ function initMap() {
   var ukupanBrojMjesta = 0;
   Promise.allSettled([userAction3(), userAction()]).then((podaci3) => {
     $(function () {
+      console.log(podaci3);
       var parkingSpots = podaci3[1];
       var parkingSessions = podaci3[0];
       var valueParkingSpota = parkingSpots[Object.keys(parkingSpots)[1]];
       var valueParkingSessiona =
         parkingSessions[Object.keys(parkingSessions)[1]];
-      console.log(parkingSessions);
       for (var i = 0; i < valueParkingSpota.length; i++) {
         brojSlobodnihMjesta++;
         const marker6 = new google.maps.Marker({
@@ -167,6 +167,29 @@ const userAction3 = async () => {
   return myJson3;
 };
 window.initMap = initMap;
+
+const parkingSpaces = async () => {
+  const response = await fetch(
+    "https://localhost:7236/api/Parking/allParkingSpaces",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const myJson = await response3.json();
+
+  return myJson;
+};
+
+function dodajParkingSpaces() {
+  Promise.allSettled([parkingSpaces()]).then((parkirniSpaceovi) => {
+    $(function () {
+      console.log(parkirniSpaceovi);
+    });
+  });
+}
 
 // function initMap() {
 //   const uluru = { lat: 42.651375, lng: 18.091252 };
