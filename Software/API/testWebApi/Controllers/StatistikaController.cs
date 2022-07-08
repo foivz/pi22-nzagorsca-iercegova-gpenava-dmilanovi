@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         {
             List<TmpSensor> sviSenzori = _parkingSensorService.GetAllParkingSensors();
             List<TmpSensor> pedesetRandomSenzora = new List<TmpSensor>();
-            for(int i = 0; i < 50; i++)
+            for(int i = 0; i < 100; i++)
             {
                 foreach (TmpSensor item in sviSenzori)
                 {
