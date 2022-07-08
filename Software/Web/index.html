@@ -18,6 +18,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/glavni.css" />
     <link rel="stylesheet" href="css/pocetnaStranica.css" />
+    <!-- <script>
+          
+    var form = document.getElementById("mojaForma");
+    function handleForm(event) {
+      event.preventDefault();
+    }
+    form.addEventListener("submit", handleForm);
+
+    function prikazi() {
+      Promise.allSettled([parkingSpaces()]).then((parkirniSpaceovi) => {
+        $(function () {
+          console.log(tempList.value);
+          var park = parkirniSpaceovi[0];
+          var valueParkingSpacea = park[Object.keys(park)[1]];
+          var tempList = document.getElementById("parkirniSpaceovi");
+          for (var i = 0; i < valueParkingSpacea.length; i++) {}
+        });
+      });
+    }
+
+    </script> -->
     <title>Parkirna mjesta</title>
   </head>
   <body>
@@ -30,9 +51,26 @@
       >
     </nav>
     <div style="margin-top: -20px">
+      <!-- <label         style="
+      margin-left: 25%;
+      padding-right: 10px;
+      color: #b3b3b3;
+      font-size: 19px;
+    "
+    for="parkirniSpaceovi">Parking Space</label> -->
       <label
         style="
-          margin-left: 25%;
+          margin-left: 15%;
+          padding-right: 10px;
+          color: #b3b3b3;
+          font-size: 19px;
+        "
+      >
+        Ukupan broj mjesta:
+      </label>
+      <label
+        style="
+          margin-left: 59px;
           padding-right: 10px;
           color: #b3b3b3;
           font-size: 19px;
@@ -71,6 +109,11 @@
         Odaberite datum:
       </label>
       <br /><br />
+      <form onsubmit="prikazi()" id="mojaForma">
+        <select name="parkingSpace" id="parkirniSpaceovi">
+        </select>
+        <input type="submit" value="Prikaži"></input>
+      </form>
       <input
         type="text"
         id="ukupanBrojMjestaPocetna"
@@ -107,21 +150,7 @@
         style="margin-left: 15px; padding-right: 25px"
       />
     </div>
-    <!-- <div style="display: flex; gap: 0px; justify-content: flex-start"> -->
-    <!-- <div
-        id="parkirniSpaceovi"
-        style="
-          margin: 0;
-          padding: 0;
-          background-color: red;
-          padding: 0%;
-          margin-top: 32px;
-          margin-left: 20px;
-          height: 703px;
-          width: 300px;
-          margin-right: -180px;
-        "
-      ></div> -->
+
     <div
       id="map"
       style="margin-right: 11%; margin-top: -65px; margin-right: 20px"
@@ -131,6 +160,6 @@
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfMa5FbvPRXZMN_ItcASp8qvXM74buvgA&callback=initMap&v=weekly"
       defer
-    ></script>
+    ></>
   </body>
 </html>
