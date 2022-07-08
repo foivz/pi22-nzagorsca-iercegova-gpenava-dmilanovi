@@ -11,26 +11,10 @@
     #4dabf7
 */
 
-.formaPretrazi {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 input {
   padding: 20px 0px;
-  margin-right: 8px;
-  padding-left: 4px;
-  padding-right: 248px;
   border-radius: 6px;
   text-align: left;
   border: none;
-  font-size: 20px;
-}
-
-input#pretraziVozila {
-  margin-right: 0;
-  text-align: center;
-  padding: 20px 16px;
-  background-color: #1971c2;
+  font-size: 16px;
 }
