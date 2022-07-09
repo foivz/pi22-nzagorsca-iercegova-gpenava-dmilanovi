@@ -13,58 +13,25 @@ function initMap() {
   var ukupanBrojMjesta = 0;
   Promise.allSettled([userAction3(), userAction()]).then((podaci3) => {
     $(function () {
+      var infoWindow = new google.maps.InfoWindow();
       var parkingSpots = podaci3[1];
       var parkingSessions = podaci3[0];
       var valueParkingSpota = parkingSpots[Object.keys(parkingSpots)[1]];
       var valueParkingSessiona =
         parkingSessions[Object.keys(parkingSessions)[1]];
+
       for (var i = 0; i < valueParkingSpota.length; i++) {
         brojSlobodnihMjesta++;
+
+        var data = valueParkingSpota[i];
+        var myLatlng = new google.maps.LatLng(
+          data.sptLatitude,
+          data.sptLongitude
+        );
         const marker6 = new google.maps.Marker({
-          position: {
-            lat: valueParkingSpota[i].sptLatitude,
-            lng: valueParkingSpota[i].sptLongitude,
-          },
+          position: myLatlng,
           map: map,
           icon: zelena,
-        });
-
-        const contentString =
-          '<div id="content">' +
-          '<div id="siteNotice">' +
-          "</div>" +
-          '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-          '<div id="bodyContent">' +
-          "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-          "sandstone rock formation in the southern part of the " +
-          "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-          "south west of the nearest large town, Alice Springs; 450&#160;km " +
-          "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-          "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-          "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-          "Aboriginal people of the area. It has many springs, waterholes, " +
-          "rock caves and ancient paintings. Uluru is listed as a World " +
-          "Heritage Site.</p>" +
-          '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-          "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-          "(last visited June 22, 2009).</p>" +
-          "</div>" +
-          "</div>";
-
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString,
-        });
-
-        marker6.addListener("click", () => {
-          infowindow.open({
-            anchor: marker6,
-            map,
-            shouldFocus: false,
-          });
-
-          map.addListener("click", function () {
-            if (infoWindow) infoWindow.close();
-          });
         });
 
         for (var j = 0; j < valueParkingSessiona.length; j++) {
@@ -75,52 +42,50 @@ function initMap() {
             brojZauzetihMjesta++;
             brojSlobodnihMjesta--;
             const marker6 = new google.maps.Marker({
-              position: {
-                lat: valueParkingSpota[i].sptLatitude,
-                lng: valueParkingSpota[i].sptLongitude,
-              },
+              position: myLatlng,
               map: map,
               icon: crvena,
             });
-            const contentString =
-              '<div id="content">' +
-              '<div id="siteNotice">' +
-              "</div>" +
-              '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-              '<div id="bodyContent">' +
-              "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-              "sandstone rock formation in the southern part of the " +
-              "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-              "south west of the nearest large town, Alice Springs; 450&#160;km " +
-              "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-              "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-              "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-              "Aboriginal people of the area. It has many springs, waterholes, " +
-              "rock caves and ancient paintings. Uluru is listed as a World " +
-              "Heritage Site.</p>" +
-              '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-              "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-              "(last visited June 22, 2009).</p>" +
-              "</div>" +
-              "</div>";
+            (function (marker6, data) {
+              const contentString =
+                "</div>" +
+                `<h1 id="firstHeading" class="firstHeading">${data.sptLabel}</h1>` +
+                '<div id="bodyContent">' +
+                `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
+                `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
+                `<p><b>Latitude</b>: ${data.sptLatitude}</p>` +
+                `<p><b>Longitude</b>: ${data.sptLongitude}</p>` +
+                `<p><b>Tip parkirnog spota</b>: ${data.sptSpotType}</p>` +
+                `<p><b>Slobodno mjesto:</b> NE </p>` +
+                "</div>" +
+                "</div>";
 
-            var infowindow = new google.maps.InfoWindow({
-              content: contentString,
-            });
-
-            marker6.addListener("click", () => {
-              infowindow.open({
-                anchor: marker6,
-                map,
-                shouldFocus: false,
+              google.maps.event.addListener(marker6, "click", function (e) {
+                infoWindow.setContent(contentString);
+                infoWindow.open(map, marker6);
               });
-
-              map.addListener("click", function () {
-                if (infoWindow) infoWindow.close();
-              });
-            });
+            })(marker6, data);
           }
         }
+        (function (marker6, data) {
+          const contentString =
+            "</div>" +
+            `<h1 id="firstHeading" class="firstHeading">${data.sptLabel}</h1>` +
+            '<div id="bodyContent">' +
+            `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
+            `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
+            `<p><b>Latitude</b>: ${data.sptLatitude}</p>` +
+            `<p><b>Longitude</b>: ${data.sptLongitude}</p>` +
+            `<p><b>Tip parkirnog spota</b>: ${data.sptSpotType}</p>` +
+            `<p><b>Slobodno mjesto:</b> DA </p>` +
+            "</div>" +
+            "</div>";
+
+          google.maps.event.addListener(marker6, "click", function (e) {
+            infoWindow.setContent(contentString);
+            infoWindow.open(map, marker6);
+          });
+        })(marker6, data);
       }
       document.getElementById("brojSlobodnihMjestaPocetna").value =
         brojSlobodnihMjesta.toString();
@@ -231,3 +196,53 @@ form.addEventListener("submit", handleForm);
 //     });
 //   });
 // }
+
+//// PREBACENO ODOZGO
+
+// var contentString =
+//   `<div id="content">` +
+//   `<div id="siteNotice">` +
+//   `</div>` +
+//   `<h1 id="firstHeading" class="firstHeading">${valueParkingSpota[i].sptLatitude}</h1>` +
+//   '<div id="bodyContent">' +
+//   "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
+//   "sandstone rock formation in the southern part of the " +
+//   "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
+//   "south west of the nearest large town, Alice Springs; 450&#160;km " +
+//   "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
+//   "features of the Uluru - Kata Tjuta National Park. Uluru is " +
+//   "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
+//   "Aboriginal people of the area. It has many springs, waterholes, " +
+//   "rock caves and ancient paintings. Uluru is listed as a World " +
+//   "Heritage Site.</p>" +
+//   '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+//   "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
+//   "(last visited June 22, 2009).</p>" +
+//   "</div>" +
+//   "</div>";
+
+// var infowindow = new google.maps.InfoWindow({
+//   content: contentString,
+// });
+
+// map.addListener("click", (mapsMouseEvent) => {
+//   infoWindow = new google.maps.InfoWindow({
+//     position: mapsMouseEvent.latLng,
+//   });
+//   infowindow.setContent(
+//     JSON.strongify(mapsMouseEvent.latLng.toJSON(), null, 2)
+//   );
+//   infoWindow.open(map);
+// });
+
+// marker6.addListener("click", () => {
+//   console.log(marker6.position);
+//   infowindow.open({
+//     anchor: marker6,
+//     map,
+//     shouldFocus: false,
+//   });
+//   map.addListener("click", function () {
+//     if (infoWindow) infoWindow.close();
+//   });
+// });
