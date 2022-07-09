@@ -21,59 +21,29 @@ function promjena() {
   Promise.allSettled([userAction3(), userAction()]).then((podaci3) => {
     $(function () {
       var infoWindow = new google.maps.InfoWindow();
+
+      function isInfoWindowOpen(infoWindow) {
+        var map = infoWindow.getMap();
+        return map !== null && typeof map !== "undefined";
+      }
+
       var parkingSpots = podaci3[1];
       var parkingSessions = podaci3[0];
       var valueParkingSpota = parkingSpots[Object.keys(parkingSpots)[1]];
       var valueParkingSessiona =
         parkingSessions[Object.keys(parkingSessions)[1]];
-
       for (var i = 0; i < valueParkingSpota.length; i++) {
         brojSlobodnihMjesta++;
-
         var data = valueParkingSpota[i];
-        var myLatlng = new google.maps.LatLng(
-          data.sptLatitude,
-          data.sptLongitude
-        );
         const marker6 = new google.maps.Marker({
-          position: myLatlng,
+          position: {
+            lat: valueParkingSpota[i].sptLatitude,
+            lng: valueParkingSpota[i].sptLongitude,
+          },
           map: map,
           icon: zelena,
         });
 
-        for (var j = 0; j < valueParkingSessiona.length; j++) {
-          if (
-            valueParkingSessiona[j].pssParkingSpotId ==
-            valueParkingSpota[i].sptParkingSpotId
-          ) {
-            brojZauzetihMjesta++;
-            brojSlobodnihMjesta--;
-            const marker6 = new google.maps.Marker({
-              position: myLatlng,
-              map: map,
-              icon: crvena,
-            });
-            (function (marker6, data) {
-              const contentString =
-                "</div>" +
-                `<h1 id="firstHeading" class="firstHeading">${data.sptLabel}</h1>` +
-                '<div id="bodyContent">' +
-                `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
-                `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
-                `<p><b>Latitude</b>: ${data.sptLatitude}</p>` +
-                `<p><b>Longitude</b>: ${data.sptLongitude}</p>` +
-                `<p><b>Tip parkirnog spota</b>: ${data.sptSpotType}</p>` +
-                `<p><b>Slobodno mjesto:</b> Ne </p>` +
-                "</div>" +
-                "</div>";
-
-              google.maps.event.addListener(marker6, "click", function (e) {
-                infoWindow.setContent(contentString);
-                infoWindow.open(map, marker6);
-              });
-            })(marker6, data);
-          }
-        }
         (function (marker6, data) {
           const contentString =
             "</div>" +
@@ -89,10 +59,54 @@ function promjena() {
             "</div>";
 
           google.maps.event.addListener(marker6, "click", function (e) {
+            if (isInfoWindowOpen(infoWindow)) {
+              infoWindow.close();
+            }
             infoWindow.setContent(contentString);
             infoWindow.open(map, marker6);
           });
         })(marker6, data);
+
+        for (var j = 0; j < valueParkingSessiona.length; j++) {
+          if (
+            valueParkingSessiona[j].pssParkingSpotId ==
+            valueParkingSpota[i].sptParkingSpotId
+          ) {
+            brojZauzetihMjesta++;
+            brojSlobodnihMjesta--;
+            const marker6 = new google.maps.Marker({
+              position: {
+                lat: valueParkingSpota[i].sptLatitude,
+                lng: valueParkingSpota[i].sptLongitude,
+              },
+              map: map,
+              icon: crvena,
+            });
+
+            (function (marker6, data) {
+              const contentString =
+                "</div>" +
+                `<h1 id="firstHeading" class="firstHeading">${data.sptLabel}</h1>` +
+                '<div id="bodyContent">' +
+                `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
+                `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
+                `<p><b>Latitude</b>: ${data.sptLatitude}</p>` +
+                `<p><b>Longitude</b>: ${data.sptLongitude}</p>` +
+                `<p><b>Tip parkirnog spota</b>: ${data.sptSpotType}</p>` +
+                `<p><b>Slobodno mjesto:</b> Ne </p>` +
+                "</div>" +
+                "</div>";
+
+              google.maps.event.addListener(marker6, "click", function (e) {
+                if (isInfoWindowOpen(infoWindow)) {
+                  infoWindow.close();
+                }
+                infoWindow.setContent(contentString);
+                infoWindow.open(map, marker6);
+              });
+            })(marker6, data);
+          }
+        }
       }
       document.getElementById("brojSlobodnihMjestaPocetna").value =
         brojSlobodnihMjesta.toString();
@@ -170,39 +184,11 @@ function dodajParkingSpaces() {
 }
 window.onload = dodajParkingSpaces();
 
-// const odredeniParkingSpaces = async () => {
-//   var idSpacea = document.getElementById("parkirniSpaceovi").value;
-//   const response = await fetch(
-//     "https://localhost:7236/api/Parking/specificParkingSpace?id=" + idSpacea,
-//     {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }
-//   );
-//   const myJson = await response.json();
-
-//   return myJson;
-// };
-
 var formtest = document.getElementById("mojaForma");
 function handleForm(event) {
   event.preventDefault();
 }
 formtest.addEventListener("submit", handleForm);
-
-// function prikazi() {
-//   Promise.allSettled([parkingSpaces()]).then((parkirniSpaceovi) => {
-//     $(function () {
-//       console.log(tempList.value);
-//       var park = parkirniSpaceovi[0];
-//       var valueParkingSpacea = park[Object.keys(park)[1]];
-//       var tempList = document.getElementById("parkirniSpaceovi");
-//       for (var i = 0; i < valueParkingSpacea.length; i++) {}
-//     });
-//   });
-// }
 
 const odredeniParkingSpaces = async () => {
   var idSpacea = document.getElementById("parkirniSpaceovi").value;
