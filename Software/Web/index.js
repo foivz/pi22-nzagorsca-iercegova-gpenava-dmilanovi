@@ -1,10 +1,17 @@
 // Initialize and add the map
+let map;
 function initMap() {
-  const uluru = { lat: 42.651375, lng: 18.091252 };
-  const map = new google.maps.Map(document.getElementById("map"), {
+  lat = 42.651375;
+  lng = 18.091252;
+  const uluru = { lat: lat, lng: lng };
+  map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
     center: uluru,
   });
+  console.log("AAAAAA", map);
+  promjena();
+}
+function promjena() {
   const plava = "ikonica.png";
   const crvena = "crvena-ikona.png";
   const zelena = "zelena-ikona.png";
@@ -13,7 +20,13 @@ function initMap() {
   var ukupanBrojMjesta = 0;
   Promise.allSettled([userAction3(), userAction()]).then((podaci3) => {
     $(function () {
-      // console.log(podaci3);
+      var infoWindow = new google.maps.InfoWindow();
+
+      function isInfoWindowOpen(infoWindow) {
+        var map = infoWindow.getMap();
+        return map !== null && typeof map !== "undefined";
+      }
+
       var parkingSpots = podaci3[1];
       var parkingSessions = podaci3[0];
       var valueParkingSpota = parkingSpots[Object.keys(parkingSpots)[1]];
@@ -21,6 +34,7 @@ function initMap() {
         parkingSessions[Object.keys(parkingSessions)[1]];
       for (var i = 0; i < valueParkingSpota.length; i++) {
         brojSlobodnihMjesta++;
+        var data = valueParkingSpota[i];
         const marker6 = new google.maps.Marker({
           position: {
             lat: valueParkingSpota[i].sptLatitude,
@@ -30,43 +44,28 @@ function initMap() {
           icon: zelena,
         });
 
-        const contentString =
-          '<div id="content">' +
-          '<div id="siteNotice">' +
-          "</div>" +
-          '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-          '<div id="bodyContent">' +
-          "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-          "sandstone rock formation in the southern part of the " +
-          "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-          "south west of the nearest large town, Alice Springs; 450&#160;km " +
-          "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-          "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-          "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-          "Aboriginal people of the area. It has many springs, waterholes, " +
-          "rock caves and ancient paintings. Uluru is listed as a World " +
-          "Heritage Site.</p>" +
-          '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-          "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-          "(last visited June 22, 2009).</p>" +
-          "</div>" +
-          "</div>";
+        (function (marker6, data) {
+          const contentString =
+            "</div>" +
+            `<h1 id="firstHeading" class="firstHeading">${data.sptLabel}</h1>` +
+            '<div id="bodyContent">' +
+            `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
+            `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
+            `<p><b>Latitude</b>: ${data.sptLatitude}</p>` +
+            `<p><b>Longitude</b>: ${data.sptLongitude}</p>` +
+            `<p><b>Tip parkirnog spota</b>: ${data.sptSpotType}</p>` +
+            `<p><b>Slobodno mjesto:</b> Da </p>` +
+            "</div>" +
+            "</div>";
 
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString,
-        });
-
-        marker6.addListener("click", () => {
-          infowindow.open({
-            anchor: marker6,
-            map,
-            shouldFocus: false,
+          google.maps.event.addListener(marker6, "click", function (e) {
+            if (isInfoWindowOpen(infoWindow)) {
+              infoWindow.close();
+            }
+            infoWindow.setContent(contentString);
+            infoWindow.open(map, marker6);
           });
-
-          map.addListener("click", function () {
-            if (infoWindow) infoWindow.close();
-          });
-        });
+        })(marker6, data);
 
         for (var j = 0; j < valueParkingSessiona.length; j++) {
           if (
@@ -83,43 +82,29 @@ function initMap() {
               map: map,
               icon: crvena,
             });
-            const contentString =
-              '<div id="content">' +
-              '<div id="siteNotice">' +
-              "</div>" +
-              '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-              '<div id="bodyContent">' +
-              "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-              "sandstone rock formation in the southern part of the " +
-              "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-              "south west of the nearest large town, Alice Springs; 450&#160;km " +
-              "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-              "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-              "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-              "Aboriginal people of the area. It has many springs, waterholes, " +
-              "rock caves and ancient paintings. Uluru is listed as a World " +
-              "Heritage Site.</p>" +
-              '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-              "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-              "(last visited June 22, 2009).</p>" +
-              "</div>" +
-              "</div>";
 
-            var infowindow = new google.maps.InfoWindow({
-              content: contentString,
-            });
+            (function (marker6, data) {
+              const contentString =
+                "</div>" +
+                `<h1 id="firstHeading" class="firstHeading">${data.sptLabel}</h1>` +
+                '<div id="bodyContent">' +
+                `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
+                `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
+                `<p><b>Latitude</b>: ${data.sptLatitude}</p>` +
+                `<p><b>Longitude</b>: ${data.sptLongitude}</p>` +
+                `<p><b>Tip parkirnog spota</b>: ${data.sptSpotType}</p>` +
+                `<p><b>Slobodno mjesto:</b> Ne </p>` +
+                "</div>" +
+                "</div>";
 
-            marker6.addListener("click", () => {
-              infowindow.open({
-                anchor: marker6,
-                map,
-                shouldFocus: false,
+              google.maps.event.addListener(marker6, "click", function (e) {
+                if (isInfoWindowOpen(infoWindow)) {
+                  infoWindow.close();
+                }
+                infoWindow.setContent(contentString);
+                infoWindow.open(map, marker6);
               });
-
-              map.addListener("click", function () {
-                if (infoWindow) infoWindow.close();
-              });
-            });
+            })(marker6, data);
           }
         }
       }
@@ -199,20 +184,46 @@ function dodajParkingSpaces() {
 }
 window.onload = dodajParkingSpaces();
 
-// var form = document.getElementById("mojaForma");
-// function handleForm(event) {
-//   event.preventDefault();
-// }
-// form.addEventListener("submit", handleForm);
+var formtest = document.getElementById("mojaForma");
+function handleForm(event) {
+  event.preventDefault();
+}
+formtest.addEventListener("submit", handleForm);
 
-// function prikazi() {
-//   Promise.allSettled([parkingSpaces()]).then((parkirniSpaceovi) => {
-//     $(function () {
-//       console.log(tempList.value);
-//       var park = parkirniSpaceovi[0];
-//       var valueParkingSpacea = park[Object.keys(park)[1]];
-//       var tempList = document.getElementById("parkirniSpaceovi");
-//       for (var i = 0; i < valueParkingSpacea.length; i++) {}
-//     });
-//   });
-// }
+const odredeniParkingSpaces = async () => {
+  var idSpacea = document.getElementById("parkirniSpaceovi").value;
+  const response = await fetch(
+    "https://localhost:7236/api/Parking/specificParkingSpace?id=" + idSpacea,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const myJson = await response.json();
+
+  return myJson;
+};
+
+function prikazi() {
+  console.log("prikazi");
+  var idSpacea = document.getElementById("parkirniSpaceovi").value;
+  console.log(idSpacea);
+  Promise.allSettled([odredeniParkingSpaces()]).then((parkirniSpaceovi2) => {
+    $(function () {
+      var park = parkirniSpaceovi2[0];
+      var valueParkingSpacea = park[Object.keys(park)[1]];
+      console.log(valueParkingSpacea[0]);
+      pokaziNaKarti(
+        valueParkingSpacea[0].pspLatitude,
+        valueParkingSpacea[0].pspLongitude
+      );
+    });
+  });
+}
+function pokaziNaKarti(lat, lng) {
+  console.log("map", map);
+  map.setCenter({ lat: lat, lng: lng });
+  map.setZoom(19);
+}

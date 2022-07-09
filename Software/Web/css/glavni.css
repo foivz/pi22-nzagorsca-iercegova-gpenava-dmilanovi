@@ -87,11 +87,6 @@ h1 {
   width: 100%;
 }
 
-input:focus,
-a:focus {
-  border-bottom: 2px solid #1971c2;
-}
-
 input:hover {
   cursor: pointer;
 }

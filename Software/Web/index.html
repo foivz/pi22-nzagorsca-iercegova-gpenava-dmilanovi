@@ -3,7 +3,7 @@
   <head>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" src="./index.js"></script>
+   
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,27 +18,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/glavni.css" />
     <link rel="stylesheet" href="css/pocetnaStranica.css" />
-    <!-- <script>
-          
-    var form = document.getElementById("mojaForma");
-    function handleForm(event) {
-      event.preventDefault();
-    }
-    form.addEventListener("submit", handleForm);
+    
 
-    function prikazi() {
-      Promise.allSettled([parkingSpaces()]).then((parkirniSpaceovi) => {
-        $(function () {
-          console.log(tempList.value);
-          var park = parkirniSpaceovi[0];
-          var valueParkingSpacea = park[Object.keys(park)[1]];
-          var tempList = document.getElementById("parkirniSpaceovi");
-          for (var i = 0; i < valueParkingSpacea.length; i++) {}
-        });
-      });
-    }
-
-    </script> -->
     <title>Parkirna mjesta</title>
   </head>
   <body>
@@ -50,27 +31,28 @@
         >REGISTRACIJA</a
       >
     </nav>
-    <div style="margin-top: -20px">
-      <!-- <label         style="
-      margin-left: 25%;
-      padding-right: 10px;
-      color: #b3b3b3;
-      font-size: 19px;
-    "
-    for="parkirniSpaceovi">Parking Space</label> -->
+    <div style="margin-top: -20px;display: flex; justify-content: space-evenly;">
+      <div class="smallitem">
+        <label
+          style="
+            margin-left: 40%;
+            padding-right: 10px;
+            color: #b3b3b3;
+            font-size: 19px;
+          "
+        >
+          Odaberite parking space:
+        </label>
+        <form onsubmit="prikazi()" id="mojaForma" name="mojaForma" style="margin-left: 40%; margin-top:20px;">
+          <select name="parkingSpace" id="parkirniSpaceovi">
+          </select>
+          <input type="submit" value="Prikaži" style="width:100px;"></input>
+        </form>
+      </div>
+      <div class="bigitem">
       <label
         style="
-          margin-left: 15%;
-          padding-right: 10px;
-          color: #b3b3b3;
-          font-size: 19px;
-        "
-      >
-        Ukupan broj mjesta:
-      </label>
-      <label
-        style="
-          margin-left: 59px;
+          margin-left: 19px;
           padding-right: 10px;
           color: #b3b3b3;
           font-size: 19px;
@@ -109,16 +91,12 @@
         Odaberite datum:
       </label>
       <br /><br />
-      <form onsubmit="prikazi()" id="mojaForma">
-        <select name="parkingSpace" id="parkirniSpaceovi">
-        </select>
-        <input type="submit" value="Prikaži"></input>
-      </form>
+      
       <input
         type="text"
         id="ukupanBrojMjestaPocetna"
         name="ukupanBrojMjestaPocetna"
-        style="margin-left: 25%; padding-right: 10px"
+        style="margin-left: 10px; padding-right: 10px"
       />
 
       <input
@@ -150,7 +128,7 @@
         style="margin-left: 15px; padding-right: 25px"
       />
     </div>
-
+  </div>
     <div
       id="map"
       style="margin-right: 11%; margin-top: -65px; margin-right: 20px"
@@ -160,6 +138,7 @@
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfMa5FbvPRXZMN_ItcASp8qvXM74buvgA&callback=initMap&v=weekly"
       defer
-    ></>
+    ></script>
+    <script type="text/javascript" src="./index.js"></script>
   </body>
 </html>
