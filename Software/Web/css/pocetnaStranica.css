@@ -11,11 +11,27 @@
     #4dabf7
 */
 
-input {
+input,
+select {
   padding: 20px 0px;
   border-radius: 6px;
   text-align: left;
   border: none;
   font-size: 16px;
   text-align: center;
+}
+
+.bigitem {
+  -webkit-flex: 2 0 0;
+  flex: 2 0 0;
+}
+
+.smallitem {
+  -webkit-flex: 1 0 0;
+  flex: 1 0 0;
+  align-items: center;
+}
+
+#mojaForma {
+  padding: 20 0;
 }
