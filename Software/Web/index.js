@@ -1,10 +1,18 @@
 // Initialize and add the map
+let map;
 function initMap() {
-  const uluru = { lat: 42.651375, lng: 18.091252 };
-  const map = new google.maps.Map(document.getElementById("map"), {
+  lat = 42.651375;
+  lng = 18.091252;
+  const uluru = { lat: lat, lng: lng };
+  map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
     center: uluru,
   });
+  console.log("AAAAAA",map);
+  promjena();
+}
+function promjena()
+{
   const plava = "ikonica.png";
   const crvena = "crvena-ikona.png";
   const zelena = "zelena-ikona.png";
@@ -133,6 +141,9 @@ function initMap() {
   });
 }
 
+  
+
+
 const userAction = async () => {
   const response = await fetch(
     "https://localhost:7236/api/Parking/allParkingSpots",
@@ -214,11 +225,11 @@ window.onload = dodajParkingSpaces();
 //   return myJson;
 // };
 
-var form = document.getElementById("mojaForma");
+var formtest = document.getElementById("mojaForma");
 function handleForm(event) {
   event.preventDefault();
 }
-form.addEventListener("submit", handleForm);
+formtest.addEventListener("submit", handleForm);
 
 // function prikazi() {
 //   Promise.allSettled([parkingSpaces()]).then((parkirniSpaceovi) => {
@@ -231,3 +242,39 @@ form.addEventListener("submit", handleForm);
 //     });
 //   });
 // }
+
+
+const odredeniParkingSpaces = async () => {
+  var idSpacea = document.getElementById("parkirniSpaceovi").value;
+  const response = await fetch(
+    "https://localhost:7236/api/Parking/specificParkingSpace?id=" + idSpacea,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const myJson = await response.json();
+
+  return myJson;
+};
+
+function prikazi() {
+  console.log("prikazi");
+  var idSpacea = document.getElementById("parkirniSpaceovi").value;
+  console.log(idSpacea);
+  Promise.allSettled([odredeniParkingSpaces()]).then((parkirniSpaceovi2) => {
+    $(function () {
+      var park = parkirniSpaceovi2[0];
+      var valueParkingSpacea = park[Object.keys(park)[1]];
+      console.log(valueParkingSpacea[0]);
+      pokaziNaKarti(valueParkingSpacea[0].pspLatitude, valueParkingSpacea[0].pspLongitude)
+    });
+  });
+}
+function pokaziNaKarti(lat, lng){
+  console.log("map",map);
+  map.setCenter({lat: lat, lng:lng});
+  map.setZoom(19);
+}
