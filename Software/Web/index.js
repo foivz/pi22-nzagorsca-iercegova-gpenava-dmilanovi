@@ -13,7 +13,6 @@ function initMap() {
   var ukupanBrojMjesta = 0;
   Promise.allSettled([userAction3(), userAction()]).then((podaci3) => {
     $(function () {
-      // console.log(podaci3);
       var parkingSpots = podaci3[1];
       var parkingSessions = podaci3[0];
       var valueParkingSpota = parkingSpots[Object.keys(parkingSpots)[1]];
@@ -199,11 +198,27 @@ function dodajParkingSpaces() {
 }
 window.onload = dodajParkingSpaces();
 
-// var form = document.getElementById("mojaForma");
-// function handleForm(event) {
-//   event.preventDefault();
-// }
-// form.addEventListener("submit", handleForm);
+// const odredeniParkingSpaces = async () => {
+//   var idSpacea = document.getElementById("parkirniSpaceovi").value;
+//   const response = await fetch(
+//     "https://localhost:7236/api/Parking/specificParkingSpace?id=" + idSpacea,
+//     {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     }
+//   );
+//   const myJson = await response.json();
+
+//   return myJson;
+// };
+
+var form = document.getElementById("mojaForma");
+function handleForm(event) {
+  event.preventDefault();
+}
+form.addEventListener("submit", handleForm);
 
 // function prikazi() {
 //   Promise.allSettled([parkingSpaces()]).then((parkirniSpaceovi) => {
