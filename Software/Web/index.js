@@ -63,7 +63,7 @@ function promjena() {
                 `<p><b>Latitude</b>: ${data.sptLatitude}</p>` +
                 `<p><b>Longitude</b>: ${data.sptLongitude}</p>` +
                 `<p><b>Tip parkirnog spota</b>: ${data.sptSpotType}</p>` +
-                `<p><b>Slobodno mjesto:</b> NE </p>` +
+                `<p><b>Slobodno mjesto:</b> Ne </p>` +
                 "</div>" +
                 "</div>";
 
@@ -84,7 +84,7 @@ function promjena() {
             `<p><b>Latitude</b>: ${data.sptLatitude}</p>` +
             `<p><b>Longitude</b>: ${data.sptLongitude}</p>` +
             `<p><b>Tip parkirnog spota</b>: ${data.sptSpotType}</p>` +
-            `<p><b>Slobodno mjesto:</b> DA </p>` +
+            `<p><b>Slobodno mjesto:</b> Da </p>` +
             "</div>" +
             "</div>";
 
