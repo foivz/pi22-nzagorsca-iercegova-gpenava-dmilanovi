@@ -23,7 +23,8 @@ builder.Services.AddCors(options =>
                                               "https://localhost:7236/api/",
                                               "https://localhost:7236/api/Parking/allParkingSpots",
                                               "http://127.0.0.1:5500",
-                                              "https://localhost:7236/api/Parking/parkingSessionsPerDate")
+                                              "https://localhost:7236/api/Parking/parkingSessionsPerDate",
+                                              "https://localhost:7236/api/Parking/specificParkingSpace")
                           .AllowAnyMethod()
                           .WithHeaders("content-type");
                       });

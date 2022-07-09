@@ -38,7 +38,6 @@ namespace WebAPI.Services
                 return zaVratiti;
             }
         }
-        //ZA DORADITI
         public List<string> GetAvailableParkingSpotsPerDate(string vrijeme)
         {
             using (var context = new PI2201_DBContext())
