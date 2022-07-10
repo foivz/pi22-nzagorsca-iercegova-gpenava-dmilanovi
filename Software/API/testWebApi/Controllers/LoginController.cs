@@ -39,9 +39,9 @@ namespace WebAPI.Controllers
 
         [HttpPost]
         [Route("addUser")]
-        public async void AddNewUser([FromBody] TmpUser User)
+        public async void AddNewUser(string ime, string prezime, string username, string lozinka, string tablicaAutomobila)
         {
-            _parkingUserService.AddNewUser(User);
+            _parkingUserService.AddNewUser(ime, prezime, username, lozinka, tablicaAutomobila);
             GetUsers();
         }
     }
