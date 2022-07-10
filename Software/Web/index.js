@@ -7,6 +7,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
     center: uluru,
+    mapTypeId: 'satellite'
   });
   console.log("AAAAAA", map);
   promjena();
