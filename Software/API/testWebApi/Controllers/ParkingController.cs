@@ -40,7 +40,7 @@ namespace testWebApi.Controllers
         [Route("parkingSessionsPerParkingSpot")]
         public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerParkingSpot(int id)
         {
-            return _parkingSessionService.GetParkingSessionsPerParkingSpace(id);
+            return _parkingSessionService.GetParkingSessionsPerParkingSpot(id);
         }
 
         [HttpGet]
