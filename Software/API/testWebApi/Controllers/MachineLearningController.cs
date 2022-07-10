@@ -24,9 +24,24 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("parkingSessionsForParkingSpace")]
-        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsForParkingSpace(int id)
+        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsForParkingSpace(int id, string datum)
         {
-            return _parkingSessionService.GetAllParkingSessionsForParkingSpace(id);
+            return _parkingSessionService.GetAllParkingSessionsForParkingSpace(id, datum);
         }
+
+        [HttpGet]
+        [Route("PercentageOfParking")]
+        public async Task<ActionResult<string>> CalculatePercentageOfParking(int id, string datum)
+        {
+            return _parkingSessionService.CalculatePercentageOfParking(id, datum);
+        }
+
+        //[HttpGet]
+        //[Route("parkingSessionsPerParkingSpace")]
+        //public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerParkingSpace(int id)
+        //{
+        //    return _parkingSessionService.GetParkingSessionsPerParkingSpot(id);
+        //}
+
     }
 }
