@@ -13,9 +13,9 @@ function initMap() {
   promjena();
 }
 function promjena() {
-  const plava = "ikonica.png";
-  const crvena = "crvena-ikona.png";
-  const zelena = "zelena-ikona.png";
+  const plava = "Ikonice/ikonica.png";
+  const crvena = "Ikonice/crvena-ikona.png";
+  const zelena = "Ikonice/zelena-ikona.png";
   var brojSlobodnihMjesta = 0;
   var brojZauzetihMjesta = 0;
   var ukupanBrojMjesta = 0;
