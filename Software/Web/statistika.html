@@ -60,12 +60,33 @@ function prikazi() {
 </head>
 
 <body id="tijeloPrijave">
-  <nav id="navigacija">
-    <a href="index.html">POČETNA</a>
-    <a id="trenutni" href="#">STATISTIKA</a>
-    <a href="obrasci/prijava.html">PRIJAVA</a>
-    <a id="trenutniRegistracija" href="obrasci/registracija.html">REGISTRACIJA</a>
-  </nav>
+  <div id="ovdjeNavigacija"></div>
+    <script>
+      if(sessionStorage.getItem("card_id") == undefined){
+      var html = [
+            '<div>',
+            '<nav id="navigacija">',
+            '<a href="index.html">POČETNA</a>',
+            '<a id="trenutni" href="#">STATISTIKA</a>',
+            '<a href="obrasci/prijava.html">PRIJAVA</a>',
+            '<a id="trenutniRegistracija" href="obrasci/registracija.html">REGISTRACIJA</a>',
+            '</nav>',
+            '</div>'
+          ].join('\n');
+        document.getElementById("ovdjeNavigacija").innerHTML += html;
+      } else {
+        var html = [
+            '<div>',
+            '<nav id="navigacija">',
+            '<a href="index.html">POČETNA</a>',
+            '<a id="trenutni" href="statistika.html">STATISTIKA</a>',
+            '<a id="trenutniRegistracija" href="odjava.html">ODJAVA</a>',
+            '</nav>',
+            '</div>'
+          ].join('\n');
+        document.getElementById("ovdjeNavigacija").innerHTML += html;
+      }
+    </script>
 
   <script>
     const userAction2 = async () => {
