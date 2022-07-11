@@ -37,17 +37,18 @@ const unseiKorisnikaUBazu = async () => {
   // return myJson;
 };
 
-var formtest = document.getElementById("registracijaKorisnika");
-function handleForm(event) {
-  event.preventDefault();
-}
-formtest.addEventListener("submit", handleForm);
 
 function prikazi() {
   Promise.any([unseiKorisnikaUBazu()]).then(() => {
     $(function () {
-      if (uspjesnoUnesen) console.log("Korisnik uspjesno unesen");
-      else console.log("Korisnik nije unesen u bazu podataka");
+      if (uspjesnoUnesen)
+      {
+        alert("Korisnik uspjesno unesen");
+      } 
+      else 
+      {
+        alert("Korisnik nije unesen u bazu podataka");
+      }
     });
   });
 }
