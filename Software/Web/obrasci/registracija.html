@@ -22,12 +22,22 @@
     <title>Registracija</title>
   </head>
   <body>
-    <nav id="navigacija">
-      <a href="../index.html">POČETNA</a>
-      <a href="../statistika.html">STATISTIKA</a>
-      <a href="prijava.html">PRIJAVA</a>
-      <a href="#">REGISTRACIJA</a>
-    </nav>
+    <div id="ovdjeNavigacija"></div>
+    <script>
+      if (sessionStorage.getItem("card_id") == undefined) {
+        var html = [
+          "<div>",
+          '<nav id="navigacija">',
+          '<a href="../index.html">POČETNA</a>',
+          '<a href="../statistika.html">STATISTIKA</a>',
+          '<a href="prijava.html">PRIJAVA</a>',
+          '<a id="trenutniRegistracija" href="#">REGISTRACIJA</a>',
+          "</nav>",
+          "</div>",
+        ].join("\n");
+        document.getElementById("ovdjeNavigacija").innerHTML += html;
+      }
+    </script>
 
     <div class="formaPretrazi">
       <h1>REGISTRACIJA</h1>
