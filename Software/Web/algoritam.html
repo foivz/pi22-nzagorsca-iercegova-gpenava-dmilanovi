@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script type="text/javascript" src="Javascript/sesije.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="PiWBL" />
+    <meta name="description" content="FOI" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/glavni.css" />
+    <link rel="stylesheet" href="css/pocetnaStranica.css" />
+
+    <title>Parkirna mjesta</title>
+  </head>
+
+  <body>
+    <nav id="navigacija">
+      <a href="index.html">POČETNA</a>
+      <a href="statistika.html">STATISTIKA</a>
+      <a id="trenutni" href="sesije.html">SESIJE</a>
+      <a href="obrasci/prijava.html">PRIJAVA</a>
+      <a id="trenutniRegistracija" href="obrasci/registracija.html"
+        >REGISTRACIJA</a
+      >
+    </nav>
+    <div style="width: 45%">
+      <canvas id="canvas" style="padding-left: 50px"></canvas>
+    </div>
+
+    <script>
+      var chartColors = {
+        red: "rgb(255, 99, 132)",
+        orange: "rgb(255, 159, 64)",
+        yellow: "rgb(255, 205, 86)",
+        green: "rgb(75, 192, 192)",
+        blue: "rgb(54, 162, 235)",
+        purple: "rgb(153, 102, 255)",
+        grey: "rgb(231,233,237)",
+      };
+
+      var MONTHS = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      var config = {
+        type: "line",
+        data: {
+          labels: [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+          ],
+          datasets: [
+            {
+              label: "My First dataset",
+              backgroundColor: chartColors.red,
+              borderColor: chartColors.red,
+              data: [300, 100, 200, 500],
+              fill: false,
+            },
+            {
+              label: "My Second dataset",
+              fill: false,
+              backgroundColor: chartColors.blue,
+              borderColor: chartColors.blue,
+              data: [600, 300, 100, 200, 500],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          title: {
+            display: true,
+            text: "Chart.js Line Chart",
+          },
+          tooltips: {
+            mode: "label",
+          },
+          hover: {
+            mode: "nearest",
+            intersect: true,
+          },
+          scales: {
+            xAxes: [
+              {
+                display: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: "Month",
+                },
+              },
+            ],
+            yAxes: [
+              {
+                display: true,
+                scaleLabel: {
+                  display: true,
+                  labelString: "Value",
+                },
+              },
+            ],
+          },
+        },
+      };
+
+      var ctx = document.getElementById("canvas").getContext("2d");
+      window.myLine = new Chart(ctx, config);
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- <script type="text/javascript" src="Javascript/index.js"></script> -->
+  </body>
+</html>
