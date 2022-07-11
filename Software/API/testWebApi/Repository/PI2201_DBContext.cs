@@ -21,6 +21,7 @@ namespace WebAPI.Repository
         public virtual DbSet<ParkingSession> ParkingSessions { get; set; } = null!;
         public virtual DbSet<TmpMetereoloskiPodaci> TmpMetereoloskiPodacis { get; set; } = null!;
         public virtual DbSet<TmpParkingSpace> TmpParkingSpaces { get; set; } = null!;
+        public virtual DbSet<TmpParkingSpaceLoad> TmpParkingSpaceLoads { get; set; } = null!;
         public virtual DbSet<TmpParkingSpot> TmpParkingSpots { get; set; } = null!;
         public virtual DbSet<TmpSensor> TmpSensors { get; set; } = null!;
         public virtual DbSet<TmpUser> TmpUsers { get; set; } = null!;
