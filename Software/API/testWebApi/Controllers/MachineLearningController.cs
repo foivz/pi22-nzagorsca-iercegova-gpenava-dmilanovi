@@ -29,12 +29,21 @@ namespace WebAPI.Controllers
             return _parkingSessionService.GetAllParkingSessionsForParkingSpace(id, datum);
         }
 
+        //[HttpGet]
+        //[Route("PercentageOfParking")]
+        //public async Task<ActionResult<List<string>>> CalculatePercentageOfParking(int id, string datum)
+        //{
+        //    return _parkingSessionService.CalculatePercentageOfParking(id, datum);
+        //}
+
+
         [HttpGet]
         [Route("PercentageOfParking")]
-        public async Task<ActionResult<List<string>>> CalculatePercentageOfParking(int id, string datum)
+        public async Task<ActionResult<double?>> GetPercentage(int id, string datum)
         {
-            return _parkingSessionService.CalculatePercentageOfParking(id, datum);
+            return _parkingSessionService.GetPercentageForParkingSpaceForDate(id, datum);
         }
+
 
         //[HttpGet]
         //[Route("parkingSessionsPerParkingSpace")]
