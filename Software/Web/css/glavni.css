@@ -107,10 +107,13 @@ input {
 
 .container {
   display: grid;
+  grid-template-columns: 2fr 1fr;
   gap: 50px 100px;
+  justify-content: center;
+  align-items: center;
 }
 
-.klasa1 {
+/* .klasa1 {
   
   grid-column-start: 1;
   grid-column-end: 1;
@@ -137,4 +140,4 @@ input {
 .spaceodabir{
   grid-column-start: 3;
   grid-column-end: 3;
-}
+} */
