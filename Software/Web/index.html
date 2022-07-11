@@ -23,14 +23,33 @@
     <title>Parkirna mjesta</title>
   </head>
   <body>
-    <nav id="navigacija">
-      <a id="trenutni" href="#">POČETNA</a>
-      <a href="statistika.html">STATISTIKA</a>
-      <a href="obrasci/prijava.html">PRIJAVA</a>
-      <a id="trenutniRegistracija" href="obrasci/registracija.html"
-        >REGISTRACIJA</a
-      >
-    </nav>
+    <div id="ovdjeNavigacija"></div>
+    <script>
+      if(sessionStorage.getItem("card_id") == undefined){
+      var html = [
+            '<div>',
+            '<nav id="navigacija">',
+            '<a id="trenutni" href="#">POČETNA</a>',
+            '<a href="statistika.html">STATISTIKA</a>',
+            '<a href="obrasci/prijava.html">PRIJAVA</a>',
+            '<a id="trenutniRegistracija" href="obrasci/registracija.html">REGISTRACIJA</a>',
+            '</nav>',
+            '</div>'
+          ].join('\n');
+        document.getElementById("ovdjeNavigacija").innerHTML += html;
+      } else {
+        var html = [
+            '<div>',
+            '<nav id="navigacija">',
+            '<a id="trenutni" href="#">POČETNA</a>',
+            '<a href="statistika.html">STATISTIKA</a>',
+            '<a id="trenutniRegistracija" href="odjava.html">ODJAVA</a>',
+            '</nav>',
+            '</div>'
+          ].join('\n');
+        document.getElementById("ovdjeNavigacija").innerHTML += html;
+      }
+    </script>
     <div style="margin-top: -20px;display: flex; justify-content: space-evenly;">
       <div class="smallitem">
         <label
