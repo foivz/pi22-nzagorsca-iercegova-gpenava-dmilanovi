@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
- 
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="PiWBL" />
@@ -29,167 +29,167 @@
     <a id="trenutniRegistracija" href="obrasci/registracija.html">REGISTRACIJA</a>
   </nav>
 
-<script>
-  const userAction2 = async () => {
-    const response2 = await fetch('https://localhost:7236/api/Statistika/randomSenzori', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const myJson2 = await response2.json();
-
-    return myJson2;
-
-  }
-
-  document.addEventListener("DOMContentLoaded", function (event) {
-    Promise.any([userAction2()])
-      .then(podaci2 => {
-        $(function () {
-          var x = 0;
-          new Chart(document.getElementById("prvi"), {
-            type: 'bar',
-            data: {
-              labels: ["Senzor ID:" + podaci2[x].snrSensorId, "Senzor ID:" + podaci2[x + 1].snrSensorId, "Senzor ID:" + podaci2[x + 2].snrSensorId, "Senzor ID:" + podaci2[x + 3].snrSensorId, "Senzor ID:" + podaci2[x + 4].snrSensorId, "Senzor ID:" + podaci2[x + 5].snrSensorId, "Senzor ID:" + podaci2[x + 6].snrSensorId, "Senzor ID:" + podaci2[x + 7].snrSensorId, "Senzor ID:" + podaci2[x + 8].snrSensorId, "Senzor ID:" + podaci2[x + 9].snrSensorId,],
-              datasets: [
-                {
-                  label: "Battery",
-                  backgroundColor: "#3e95cd",
-
-                  data: [podaci2[x].snrNbpsBatteryLevel, podaci2[x + 1].snrNbpsBatteryLevel, podaci2[x + 2].snrNbpsBatteryLevel, podaci2[x + 3].snrNbpsBatteryLevel, podaci2[x + 4].snrNbpsBatteryLevel, podaci2[x + 5].snrNbpsBatteryLevel, podaci2[x + 6].snrNbpsBatteryLevel, podaci2[x + 7].snrNbpsBatteryLevel, podaci2[x + 8].snrNbpsBatteryLevel, podaci2[x + 9].snrNbpsBatteryLevel,]
-                }
-              ]
-            },
-            options: {
-              legend: { display: false },
-              title: {
-                display: true,
-                text: 'Prikaz random senzora i njihove baterije'
-              },
-
-            }
-          });
-        })
-        /* } */
-      })
-      .catch(error => {
-        console.error("Failed to fetch2")
+  <script>
+    const userAction2 = async () => {
+      const response2 = await fetch('https://localhost:7236/api/Statistika/randomSenzori', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
-  });
+      const myJson2 = await response2.json();
 
+      return myJson2;
 
-  const userAction = async () => {
-    const response = await fetch('https://localhost:7236/api/Statistika/tipParkirnihMjesta', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+      Promise.any([userAction2()])
+        .then(podaci2 => {
+          $(function () {
+            var x = 0;
+            new Chart(document.getElementById("prvi"), {
+              type: 'bar',
+              data: {
+                labels: ["Senzor ID:" + podaci2[x].snrSensorId, "Senzor ID:" + podaci2[x + 1].snrSensorId, "Senzor ID:" + podaci2[x + 2].snrSensorId, "Senzor ID:" + podaci2[x + 3].snrSensorId, "Senzor ID:" + podaci2[x + 4].snrSensorId, "Senzor ID:" + podaci2[x + 5].snrSensorId, "Senzor ID:" + podaci2[x + 6].snrSensorId, "Senzor ID:" + podaci2[x + 7].snrSensorId, "Senzor ID:" + podaci2[x + 8].snrSensorId, "Senzor ID:" + podaci2[x + 9].snrSensorId,],
+                datasets: [
+                  {
+                    label: "Battery",
+                    backgroundColor: "#3e95cd",
+
+                    data: [podaci2[x].snrNbpsBatteryLevel, podaci2[x + 1].snrNbpsBatteryLevel, podaci2[x + 2].snrNbpsBatteryLevel, podaci2[x + 3].snrNbpsBatteryLevel, podaci2[x + 4].snrNbpsBatteryLevel, podaci2[x + 5].snrNbpsBatteryLevel, podaci2[x + 6].snrNbpsBatteryLevel, podaci2[x + 7].snrNbpsBatteryLevel, podaci2[x + 8].snrNbpsBatteryLevel, podaci2[x + 9].snrNbpsBatteryLevel,]
+                  }
+                ]
+              },
+              options: {
+                legend: { display: false },
+                title: {
+                  display: true,
+                  text: 'Prikaz random senzora i njihove baterije'
+                },
+
+              }
+            });
+          })
+          /* } */
+        })
+        .catch(error => {
+          console.error("Failed to fetch2")
+        });
     });
-    const myJson = await response.json(); 
 
-    return myJson;
 
-  }
+    const userAction = async () => {
+      const response = await fetch('https://localhost:7236/api/Statistika/tipParkirnihMjesta', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const myJson = await response.json();
 
-  Promise.any([userAction()])
-    .then(datas => {
-      for (var i = 0; i < datas.length; i++) {
-        varijabla1 = datas[i].split(";");
-        $(function () {
+      return myJson;
 
-          var ctx_2 = document.getElementById("drugi").getContext('2d');
-          var data_2 = {
-            datasets: [{
-              data: [varijabla1[0], varijabla1[1]],
-              backgroundColor: [
-                '#3c8dbc',
-                '#f56954',
-                '#f39c12',
-              ],
-            }],
-            labels: [
-              'Obično parking mjesto',
-              'Invalidsko parking mjesto'
-            ]
-          };
-          var myDoughnutChart_2 = new Chart(ctx_2, {
-            type: 'doughnut',
-            data: data_2,
-            options: {
-              responsive: false,
-              maintainAspectRatio: false,
-              legend: {
-                position: 'bottom',
-                labels: {
-                  boxWidth: 12
+    }
+
+    Promise.any([userAction()])
+      .then(datas => {
+        for (var i = 0; i < datas.length; i++) {
+          varijabla1 = datas[i].split(";");
+          $(function () {
+
+            var ctx_2 = document.getElementById("drugi").getContext('2d');
+            var data_2 = {
+              datasets: [{
+                data: [varijabla1[0], varijabla1[1]],
+                backgroundColor: [
+                  '#3c8dbc',
+                  '#f56954',
+                  '#f39c12',
+                ],
+              }],
+              labels: [
+                'Obično parking mjesto',
+                'Invalidsko parking mjesto'
+              ]
+            };
+            var myDoughnutChart_2 = new Chart(ctx_2, {
+              type: 'doughnut',
+              data: data_2,
+              options: {
+                responsive: false,
+                maintainAspectRatio: false,
+                legend: {
+                  position: 'bottom',
+                  labels: {
+                    boxWidth: 12
+                  }
                 }
               }
-            }
-          });
-        });
-      }
-
-    })
-    .catch(error => {
-      console.error("Failed to fetch")
-    });
-
-  const userAction3 = async () => {
-    const response3 = await fetch('https://localhost:7236/api/Statistika/brojSlobodnihMjestaPoParkirnomSpaceu', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const myJson3 = await response3.json(); 
-
-    return myJson3;
-
-  }
-
-  Promise.any([userAction3()])
-    .then(podaci3 => {
-      $(function () {
-        for (var z = 0; z < 10; z++) {
-          var varijablica1 = podaci3[0].split(";");
-          var varijablica2 = podaci3[1].split(";");
-          var varijablica3 = podaci3[2].split(";");
-          var varijablica4 = podaci3[3].split(";");
-          var varijablica5 = podaci3[4].split(";");
-          var varijablica6 = podaci3[5].split(";");
-          var varijablica7 = podaci3[6].split(";");
-          var varijablica8 = podaci3[7].split(";");
-          var varijablica9 = podaci3[8].split(";");
-          var varijablica10 = podaci3[9].split(";");
-
-          
-          new Chart(document.getElementById("treci"), {
-            type: 'bar',
-            data: {
-              labels: ["Space:"+varijablica1[0],"Space:"+ varijablica2[0], "Space:"+varijablica3[0],"Space:"+ varijablica4[0],"Space:"+ varijablica5[0], "Space:"+varijablica6[0], "Space:"+varijablica7[0],"Space:"+ varijablica8[0], "Space:"+varijablica9[0], "Space:"+varijablica10[0]],
-              datasets: [
-                {
-                  label: "Slobodnih parkirnih mjesta",
-                  backgroundColor: "#3e95cd",
-                  data: [varijablica1[1], varijablica2[1], varijablica3[1], varijablica4[1], varijablica5[1], varijablica6[1], varijablica7[1], varijablica8[1], varijablica9[1], varijablica10[1]]
-                }
-              ]
-            },
-            options: {
-              legend: { display: false },
-              title: {
-                display: true,
-                text: 'Broj slobodnih parkirnih mjesta po parkiralištu'
-              },
-
-            }
+            });
           });
         }
 
       })
-    });
-</script>
+      .catch(error => {
+        console.error("Failed to fetch")
+      });
+
+    const userAction3 = async () => {
+      const response3 = await fetch('https://localhost:7236/api/Statistika/brojSlobodnihMjestaPoParkirnomSpaceu', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const myJson3 = await response3.json();
+
+      return myJson3;
+
+    }
+
+    Promise.any([userAction3()])
+      .then(podaci3 => {
+        $(function () {
+          for (var z = 0; z < 10; z++) {
+            var varijablica1 = podaci3[0].split(";");
+            var varijablica2 = podaci3[1].split(";");
+            var varijablica3 = podaci3[2].split(";");
+            var varijablica4 = podaci3[3].split(";");
+            var varijablica5 = podaci3[4].split(";");
+            var varijablica6 = podaci3[5].split(";");
+            var varijablica7 = podaci3[6].split(";");
+            var varijablica8 = podaci3[7].split(";");
+            var varijablica9 = podaci3[8].split(";");
+            var varijablica10 = podaci3[9].split(";");
+
+
+            new Chart(document.getElementById("treci"), {
+              type: 'bar',
+              data: {
+                labels: ["Space:" + varijablica1[0], "Space:" + varijablica2[0], "Space:" + varijablica3[0], "Space:" + varijablica4[0], "Space:" + varijablica5[0], "Space:" + varijablica6[0], "Space:" + varijablica7[0], "Space:" + varijablica8[0], "Space:" + varijablica9[0], "Space:" + varijablica10[0]],
+                datasets: [
+                  {
+                    label: "Slobodnih parkirnih mjesta",
+                    backgroundColor: "#3e95cd",
+                    data: [varijablica1[1], varijablica2[1], varijablica3[1], varijablica4[1], varijablica5[1], varijablica6[1], varijablica7[1], varijablica8[1], varijablica9[1], varijablica10[1]]
+                  }
+                ]
+              },
+              options: {
+                legend: { display: false },
+                title: {
+                  display: true,
+                  text: 'Broj slobodnih parkirnih mjesta po parkiralištu'
+                },
+
+              }
+            });
+          }
+
+        })
+      });
+  </script>
 
   <div class="container">
     <div class="klasa1">
@@ -201,8 +201,44 @@
     <div class="klasa3">
       <canvas id="treci" width="700px" height="240px"></canvas>
     </div>
+    <div class="spaceodabir">
+      <label
+        style="
+          margin-left: 19px;
+          padding-right: 10px;
+          color: #b3b3b3;
+          font-size: 19px;
+        "
+      >
+        Ukupan broj mjesta:
+      </label>
+      <label style="
+          margin-left: 40%;
+          padding-right: 10px;
+          color: #b3b3b3;
+          font-size: 19px;
+        ">
+        Odaberite parking space:
+      </label>
+      <form onsubmit="prikazi()" id="mojaForma" name="mojaForma" style="margin-left: 40%; margin-top:20px;">
+        <select name="parkingSpace" id="parkirniSpaceovi">
+        </select>
+        <input type="submit" value="Prikaži" style="width:100px;"></input>
+      </form>
+      Odaberite datum:
+      </label>
+      <br /><br />
+      <input
+        type="text"
+        id="ukupanBrojMjestaPocetna"
+        name="ukupanBrojMjestaPocetna"
+        style="margin-left: 10px; padding-right: 10px"
+      />
+      <input type="datetime-local" id="datumPocetna" name="datumPocetna" onchange="saljidatum()"
+        value="2021-01-01T00:00" style="margin-left: 15px; padding-right: 25px" />
+    </div>
   </div>
-  
 </body>
 <script type="module" src="./statistika.js"></script>
+
 </html>
