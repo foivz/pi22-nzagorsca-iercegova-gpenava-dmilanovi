@@ -10,11 +10,29 @@ namespace WebAPI.Services
 {
     public class ParkingUsersService
     {
-        public void AddNewUser(TmpUser user)
+        public void AddNewUser(string ime, string prezime, string username, string lozinka, string tablicaAutomobila)
         {
             using (var context = new PI2201_DBContext())
             {
-                context.TmpUsers.Add(user);
+                var lastUserUserID = context.TmpUsers
+                  .FromSqlRaw($"SELECT  TOP 1 * FROM tmp_users ORDER BY user_id DESC;").ToList();
+                var lastUserCardID = context.TmpUsers
+                  .FromSqlRaw($"SELECT  TOP 1 * FROM tmp_users ORDER BY card_id DESC;").ToList();
+                TmpUser noviUser = new TmpUser();
+                int noviUserID = lastUserUserID[0].UserId;
+                int noviCardID = lastUserCardID[0].CardId;
+                noviUserID++;
+                noviCardID++;
+                noviUser.UserId = noviUserID;
+                noviUser.Name = ime;
+                noviUser.Surname = prezime;
+                noviUser.Lozinka = lozinka;
+                noviUser.Username = username;
+                noviUser.TipKorisnika = "Registrirani korisnik";
+                noviUser.CardId = noviCardID;
+                noviUser.CarTable = tablicaAutomobila;
+                context.TmpUsers.Add(noviUser);
+                context.SaveChanges();
             }
         }
         public List<TmpUser> GetAllParkingUsers()
