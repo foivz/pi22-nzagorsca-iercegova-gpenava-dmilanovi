@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.7.1.min.js"
+    ></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,17 +21,27 @@
     <title>Prijava</title>
   </head>
   <body id="tijeloPrijave">
-    <nav id="navigacija">
-      <a href="../index.html">POČETNA</a>
-      <a href="../statistika.html">STATISTIKA</a>
-      <a id="trenutni" href="#">PRIJAVA</a>
-      <a id="trenutniRegistracija" href="registracija.html">REGISTRACIJA</a>
-    </nav>
+    <div id="ovdjeNavigacija"></div>
+    <script>
+      if (sessionStorage.getItem("card_id") == undefined) {
+        var html = [
+          "<div>",
+          '<nav id="navigacija">',
+          '<a href="../index.html">POČETNA</a>',
+          '<a href="../statistika.html">STATISTIKA</a>',
+          '<a id="trenutni" href="#">PRIJAVA</a>',
+          '<a id="trenutniRegistracija" href="registracija.html">REGISTRACIJA</a>',
+          "</nav>",
+          "</div>",
+        ].join("\n");
+        document.getElementById("ovdjeNavigacija").innerHTML += html;
+      }
+    </script>
 
     <div class="formaPretrazi">
       <h1>PRIJAVA</h1>
 
-      <form id="prijavaKorisnika" method="get" name="prijavaKorisnika">
+      <form id="prijavaKorisnika" onsubmit="prikazi()">
         <p>
           <input
             type="text"
@@ -53,5 +67,6 @@
         </p>
       </form>
     </div>
+    <script type="text/javascript" src="../Javascript/prijava.js"></script>
   </body>
 </html>
