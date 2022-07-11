@@ -38,14 +38,14 @@ namespace testWebApi.Controllers
 
         [HttpGet]
         [Route("parkingSessionsPerParkingSpot")]
-        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerParkingSpot(int id)
+        public async Task<ActionResult<List<ParkingSession>>> GetParkingSessionsPerParkingSpot(int id)
         {
             return _parkingSessionService.GetParkingSessionsPerParkingSpot(id);
         }
 
         [HttpGet]
         [Route("parkingSessionsPerParkingSpotWithinDate")]
-        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerParkingSpotWithinDate(int id, string vrijeme)
+        public async Task<ActionResult<List<ParkingSession>>> GetParkingSessionsPerParkingSpotWithinDate(int id, string vrijeme)
         {
             return _parkingSessionService.GetParkingSessionsPerParkingSpotWithDate(id, vrijeme);
         }
@@ -60,7 +60,7 @@ namespace testWebApi.Controllers
 
         [HttpGet]
         [Route("parkingSessionsPerDate")]
-        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerDate(string vrijeme)
+        public async Task<ActionResult<List<ParkingSession>>> GetParkingSessionsPerDate(string vrijeme)
         {
             return _parkingSessionService.GetParkingSessionsPerDate(vrijeme);
         }
@@ -68,7 +68,7 @@ namespace testWebApi.Controllers
 
         [HttpGet]
         [Route("specificParkingSession")]
-        public async Task<ActionResult<List<TmpParkingSession>>> GetSpecificParkingSession(int Id)
+        public async Task<ActionResult<List<ParkingSession>>> GetSpecificParkingSession(int Id)
         {
             return _parkingSessionService.GetSpecificParkingSession(Id);
         }

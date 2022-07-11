@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("parkingSessionsForParkingSpace")]
-        public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsForParkingSpace(int id, string datum)
+        public async Task<ActionResult<List<ParkingSession>>> GetParkingSessionsForParkingSpace(int id, string datum)
         {
             return _parkingSessionService.GetAllParkingSessionsForParkingSpace(id, datum);
         }

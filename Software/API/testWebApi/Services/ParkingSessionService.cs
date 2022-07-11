@@ -10,7 +10,7 @@ namespace WebAPI.Services
 {
     public class ParkingSessionService
     {
-        public List<TmpParkingSession> GetParkingSessionsPerParkingSpot(int id)
+        public List<ParkingSession> GetParkingSessionsPerParkingSpot(int id)
         {
             using (var context = new PI2201_DBContext())
             {
@@ -18,12 +18,12 @@ namespace WebAPI.Services
                 return parkingSessions;
             }
         }
-        public List<TmpParkingSession> GetParkingSessionsPerParkingSpotWithDate(int id, string vrijeme)
+        public List<ParkingSession> GetParkingSessionsPerParkingSpotWithDate(int id, string vrijeme)
         {
             using (var context = new PI2201_DBContext())
             {
                 var parkingSessions = context.ParkingSessions.Where(x => x.PssParkingSpotId == id).ToList();
-                List<TmpParkingSession> zaVratiti = new List<TmpParkingSession>();
+                List<ParkingSession> zaVratiti = new List<ParkingSession>();
                 foreach (var item in parkingSessions)
                 {
                     string[] datumItema = item.PssStartTime.Split(' ');
@@ -70,7 +70,7 @@ namespace WebAPI.Services
             }
         }
 
-        public List<TmpParkingSession> GetParkingSessionsPerDate(string vrijeme)
+        public List<ParkingSession> GetParkingSessionsPerDate(string vrijeme)
         {
             using (var context = new PI2201_DBContext())
             {
@@ -86,15 +86,15 @@ namespace WebAPI.Services
             }
         }
 
-        public List<TmpParkingSession> GetSpecificParkingSession(int id)
+        public List<ParkingSession> GetSpecificParkingSession(int id)
         {
             using (var context = new PI2201_DBContext())
             {
                 var parkingSessions = context.ParkingSessions.Where(x => x.PssParkingSessionId == id).ToList();
-                return (List<TmpParkingSession>)parkingSessions;
+                return (List<ParkingSession>)parkingSessions;
             }
         }
-        public List<TmpParkingSession> GetAllParkingSessionsForParkingSpace(int id, string datum)
+        public List<ParkingSession> GetAllParkingSessionsForParkingSpace(int id, string datum)
         {
             using (var context = new PI2201_DBContext())
             {
