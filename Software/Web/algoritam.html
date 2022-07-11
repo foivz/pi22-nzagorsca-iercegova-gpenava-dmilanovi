@@ -23,15 +23,33 @@
   </head>
 
   <body>
-    <nav id="navigacija">
-      <a href="index.html">POČETNA</a>
-      <a href="statistika.html">STATISTIKA</a>
-      <a id="trenutni" href="sesije.html">SESIJE</a>
-      <a href="obrasci/prijava.html">PRIJAVA</a>
-      <a id="trenutniRegistracija" href="obrasci/registracija.html"
-        >REGISTRACIJA</a
-      >
-    </nav>
+    <script>
+      if (sessionStorage.getItem("card_id") == undefined) {
+        var html = [
+          "<div>",
+          '<nav id="navigacija">',
+          '<a id="trenutni" href="#">POČETNA</a>',
+          '<a href="statistika.html">STATISTIKA</a>',
+          '<a href="obrasci/prijava.html">PRIJAVA</a>',
+          '<a id="trenutniRegistracija" href="obrasci/registracija.html">REGISTRACIJA</a>',
+          "</nav>",
+          "</div>",
+        ].join("\n");
+        document.getElementById("ovdjeNavigacija").innerHTML += html;
+      } else {
+        var html = [
+          "<div>",
+          '<nav id="navigacija">',
+          '<a href="index.html">POČETNA</a>',
+          '<a href="statistika.html">STATISTIKA</a>',
+          '<a id="trenutni" href="#">ALGORITAM</a>',
+          '<a id="trenutniRegistracija" href="odjava.html">ODJAVA</a>',
+          "</nav>",
+          "</div>",
+        ].join("\n");
+        document.getElementById("ovdjeNavigacija").innerHTML += html;
+      }
+    </script>
     <div style="width: 45%">
       <canvas id="canvas" style="padding-left: 50px"></canvas>
     </div>
