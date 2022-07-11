@@ -25,7 +25,8 @@ builder.Services.AddCors(options =>
                                               "http://127.0.0.1:5500",
                                               "https://localhost:7236/api/Parking/parkingSessionsPerDate",
                                               "https://localhost:7236/api/Parking/specificParkingSpace",
-                                              "https://localhost:7236/api/MachineLearning/PercentageOfParking")
+                                              "https://localhost:7236/api/MachineLearning/PercentageOfParking",
+                                              "https://localhost:7236/api/Login/allUsers")
                           .AllowAnyMethod()
                           .WithHeaders("content-type");
                       });
