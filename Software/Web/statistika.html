@@ -48,9 +48,8 @@ function prikazi() {
     (parkirniSpaceovi2) => {
       $(function () {
         var postotakZauzetosti = parkirniSpaceovi2[0];
-        var valuePostotkaZauzetosti = postotakZauzetosti[Object.keys(postotakZauzetosti)[1]];
-        console.log(valuePostotkaZauzetosti[0]);
-        document.getElementById("postotakZauzetosti").value = valuePostotkaZauzetosti[0].toString() + "%";
+        // var valuePostotkaZauzetosti = postotakZauzetosti[Object.keys(postotakZauzetosti)[1]];
+        document.getElementById("postotakZauzetosti").value = postotakZauzetosti.value.toString() + "%";
       });
     }
   );
