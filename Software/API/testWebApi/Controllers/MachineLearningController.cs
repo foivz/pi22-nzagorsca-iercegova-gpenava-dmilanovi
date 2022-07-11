@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
 
         [HttpGet]
         [Route("PercentageOfParking")]
-        public async Task<ActionResult<string>> CalculatePercentageOfParking(int id, string datum)
+        public async Task<ActionResult<List<string>>> CalculatePercentageOfParking(int id, string datum)
         {
             return _parkingSessionService.CalculatePercentageOfParking(id, datum);
         }

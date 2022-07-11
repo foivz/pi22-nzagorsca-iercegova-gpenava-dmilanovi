@@ -98,7 +98,7 @@ namespace WebAPI.Services
         {
             using (var context = new PI2201_DBContext())
             {
-                string[] razdvojenDatum = datum.Split(' ');
+                string[] razdvojenDatum = datum.Split('T');
                 string[] razdvojenGodinaMjesecDan = razdvojenDatum[0].Split('-');
                 string noviMjesec = "";
                 if (int.Parse(razdvojenGodinaMjesecDan[1]) > 1)
@@ -118,14 +118,14 @@ namespace WebAPI.Services
                 return parkingSessionsPerParkingSpotsPerParkingSpace;
             }
         }
-        public string CalculatePercentageOfParking(int id, string datum)
+        public List<string> CalculatePercentageOfParking(int id, string datum)
         {
             using (var context = new PI2201_DBContext())
             {
                 var parkingSessionsPerParkingSpotsPerParkingSpace = GetAllParkingSessionsForParkingSpace(id, datum);
                 var parkingSpotsForParkingSpace = context.TmpParkingSpots.Where(x => x.SptParkingSpaceId == id).ToList();
                 float brojSatiProvedenoParkirano = 0;
-                string postotak = "";
+                List<string> postotak = new List<string>();
                 float i = parkingSpotsForParkingSpace.Count();
                 foreach (var item in parkingSessionsPerParkingSpotsPerParkingSpace)
                 {
@@ -146,7 +146,7 @@ namespace WebAPI.Services
                 }
                 float brojSatiUDvaMjesesca = 1460 * i;
                 float izracunato = brojSatiProvedenoParkirano / brojSatiUDvaMjesesca * 100;
-                postotak = izracunato.ToString();
+                postotak.Add(izracunato.ToString());
                 return postotak;
             }
         }
