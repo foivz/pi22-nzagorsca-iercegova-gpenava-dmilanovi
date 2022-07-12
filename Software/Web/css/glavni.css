@@ -106,9 +106,9 @@ input {
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 50px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   justify-content: center;
   align-items: center;
 }
