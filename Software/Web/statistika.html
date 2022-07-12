@@ -37,47 +37,31 @@
       return myJson;
     };
 
+    const dohvatiSenzore = async () => {
+      var idSpacea = document.getElementById("parkirniSpaceovi").value;
+      const response = await fetch('https://localhost:7236/api/Parking/SensorsForParkingSpace?Id=' + idSpacea, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const myJson = await response.json();
+
+      return myJson;
+
+    }
+
     function prikazi() {
       Promise.any([dohvatiParkingSpotsZaParkingSpace()]).then((parkirniSpaceovi2) => {
           $(function () {
             console.log(parkirniSpaceovi2);
-            var ctx_2 = document.getElementById("drugi").getContext('2d');
-            var data_2 = {
-              datasets: [{
-                data: [
-                  regular, handicapped, taxi, charging, reserved],
-                backgroundColor: [
-                  '#3c8dbc',
-                  '#f56954',
-                  '#a59c12',
-                  '#c13322',
-                  '#f39c12',
-                ],
-              }],
-              labels: [
-                'Obično parking mjesto',
-                'Invalidsko parking mjesto',
-                'TAXI mjesto', 
-                'Parkirno mjesto za električno punjenje',
-                'Rezervirano parkirno mjesto',
-              ]
-            };
-            var myDoughnutChart_2 = new Chart(ctx_2, {
-              type: 'doughnut',
-              data: data_2,
-              options: {
-                responsive: false,
-                maintainAspectRatio: false,
-                legend: {
-                  position: 'bottom',
-                  labels: {
-                    boxWidth: 12
-                  }
-                }
-              }
-            });
           });
 
+      });
+      Promise.any([dohvatiSenzore()]).then((parkirniSpaceovi2) => {
+          $(function () {
+            console.log(parkirniSpaceovi2);
+          });
       });
     }
 
@@ -302,7 +286,6 @@
   <input type="datetime-local" id="datumStatitika" name="datumStatitika"
     value="2021-01-01T00:00" style="margin-left: 15px; padding-right: 25px" />
     <input type="submit" value="Prikaži" style="width:100px;"></input>
-
   </form>
 
   </div>
