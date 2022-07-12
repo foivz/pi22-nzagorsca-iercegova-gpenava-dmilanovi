@@ -4,38 +4,6 @@ function handleForm(event) {
 }
 formtest.addEventListener("submit", handleForm);
 
-// const odredeniParkingSpaceSaDatumom = async () => {
-//   var idSpacea = document.getElementById("parkirniSpaceovi").value;
-//   var datum = document.getElementById("datumStatitika").value;
-//   console.log(idSpacea);
-//   console.log(datum);
-//   const response = await fetch(
-//     "https://localhost:7236/api/MachineLearning/PercentageOfParking?id=" +
-//       idSpacea +
-//       "&datum=" +
-//       datum,
-//     {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }
-//   );
-//   const myJson = await response.json();
-
-//   return myJson;
-// };
-
-// function prikazi() {
-//   Promise.allSettled([odredeniParkingSpaceSaDatumom()]).then(
-//     (parkirniSpaceovi2) => {
-//       $(function () {
-//         console.log(parkirniSpaceovi2);
-//       });
-//     }
-//   );
-// }
-
 const parkingSpaces = async () => {
   const response = await fetch(
     "https://localhost:7236/api/Parking/allParkingSpaces",

@@ -7,7 +7,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
     center: uluru,
-    mapTypeId: 'satellite'
+    mapTypeId: "satellite",
   });
   //console.log("AAAAAA", map);
   promjena();
@@ -170,7 +170,6 @@ const parkingSpaces = async () => {
 function dodajParkingSpaces() {
   Promise.allSettled([parkingSpaces()]).then((parkirniSpaceovi) => {
     $(function () {
-      //console.log(parkirniSpaceovi);
       var park = parkirniSpaceovi[0];
       var valueParkingSpacea = park[Object.keys(park)[1]];
       var tempList = document.getElementById("parkirniSpaceovi");
@@ -208,14 +207,10 @@ const odredeniParkingSpaces = async () => {
 };
 
 function prikazi() {
-  //console.log("prikazi");
-  var idSpacea = document.getElementById("parkirniSpaceovi").value;
-  //console.log(idSpacea);
   Promise.allSettled([odredeniParkingSpaces()]).then((parkirniSpaceovi2) => {
     $(function () {
       var park = parkirniSpaceovi2[0];
       var valueParkingSpacea = park[Object.keys(park)[1]];
-      //console.log(valueParkingSpacea[0]);
       pokaziNaKarti(
         valueParkingSpacea[0].pspLatitude,
         valueParkingSpacea[0].pspLongitude
@@ -224,7 +219,6 @@ function prikazi() {
   });
 }
 function pokaziNaKarti(lat, lng) {
-  //console.log("map", map);
   map.setCenter({ lat: lat, lng: lng });
   map.setZoom(19);
 }

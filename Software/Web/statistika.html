@@ -393,90 +393,6 @@
       }
     </script>
 
-  <script>
-    const userAction2 = async () => {
-      const response2 = await fetch('https://localhost:7236/api/Statistika/randomSenzori', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      const myJson2 = await response2.json();
-
-      return myJson2;
-
-    }
-
-    const userAction = async () => {
-      const response = await fetch('https://localhost:7236/api/Statistika/tipParkirnihMjesta', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      const myJson = await response.json();
-
-      return myJson;
-
-    }
-
-    // Promise.any([userAction()])
-    //   .then(datas => {
-    //     for (var i = 0; i < datas.length; i++) {
-    //       varijabla1 = datas[i].split(";");
-    //       $(function () {
-
-    //         var ctx_2 = document.getElementById("drugi").getContext('2d');
-    //         var data_2 = {
-    //           datasets: [{
-    //             data: [varijabla1[0], varijabla1[1]],
-    //             backgroundColor: [
-    //               '#3c8dbc',
-    //               '#f56954',
-    //               '#f39c12',
-    //             ],
-    //           }],
-    //           labels: [
-    //             'Obično parking mjesto',
-    //             'Invalidsko parking mjesto'
-    //           ]
-    //         };
-    //         var myDoughnutChart_2 = new Chart(ctx_2, {
-    //           type: 'doughnut',
-    //           data: data_2,
-    //           options: {
-    //             responsive: false,
-    //             maintainAspectRatio: false,
-    //             legend: {
-    //               position: 'bottom',
-    //               labels: {
-    //                 boxWidth: 12
-    //               }
-    //             }
-    //           }
-    //         });
-    //       });
-    //     }
-
-      // })
-      // .catch(error => {
-      //   console.error("Failed to fetch")
-      // });
-
-    const userAction3 = async () => {
-      const response3 = await fetch('https://localhost:7236/api/Statistika/brojSlobodnihMjestaPoParkirnomSpaceu', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      const myJson3 = await response3.json();
-
-      return myJson3;
-
-    }
-  </script>
-
 <div class="spaceodabir" style="display: flex; gap: 20px;padding-left: 36%; padding-bottom: 15px;">
   <div>
   <label style="
@@ -494,7 +410,7 @@
   font-size: 19px;
     ">
     Odaberite datum:
-</label>
+  </label>
   <form onsubmit="prikazi()" id="mojaForma" name="mojaForma" >
     <select name="parkingSpace" id="parkirniSpaceovi">
     </select>
@@ -505,22 +421,6 @@
 
   </div>
   <br>
-  <!-- <div>
-    <label
-      style="
-        padding-right: 10px;
-        color: #b3b3b3;
-        font-size: 19px;
-      "
-    >
-      Postotak zauzetosti parkirnog spacea:
-    </label>
-    <input
-      type="text"
-      id="postotakZauzetosti"
-      name="postotakZauzetosti"
-    />
-  </div> -->
 </div>
 
   <div class="container">
