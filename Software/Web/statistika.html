@@ -66,13 +66,25 @@
 
     }
 
+    var myDoughnutChart_2;
+    var prviChart;
+    var drugiChart;
     function prikazi() {
+
+      if(myDoughnutChart_2 != undefined)
+        myDoughnutChart_2.destroy();
+
+      if(drugiChart != undefined)
+        drugiChart.destroy();
+
+      if(prviChart != undefined)
+        prviChart.destroy();
 
       Promise.any([dohvatiSenzore()])
         .then(podaci2 => {
           $(function () {
             var x = 0;
-            new Chart(document.getElementById("prvi"), {
+            prviChart = new Chart(document.getElementById("prvi"), {
               type: 'bar',
               data: {
                 labels: ["Senzor ID:" + podaci2[x].snrSensorId, "Senzor ID:" + podaci2[x + 1].snrSensorId, "Senzor ID:" + podaci2[x + 2].snrSensorId, "Senzor ID:" + podaci2[x + 3].snrSensorId, "Senzor ID:" + podaci2[x + 4].snrSensorId, "Senzor ID:" + podaci2[x + 5].snrSensorId, "Senzor ID:" + podaci2[x + 6].snrSensorId, "Senzor ID:" + podaci2[x + 7].snrSensorId, "Senzor ID:" + podaci2[x + 8].snrSensorId, "Senzor ID:" + podaci2[x + 9].snrSensorId,],
@@ -245,7 +257,7 @@
             podaci23 = podaci3[22].pslLoad;
             podaci24 = podaci3[23].pslLoad;
           }
-            new Chart(document.getElementById("treci"), {
+            drugiChart = new Chart(document.getElementById("treci"), {
               type: 'bar',
               data: {
                 labels: [satiIminute1[0], satiIminute2[0], satiIminute3[0],satiIminute4[0],satiIminute5[0],satiIminute6[0],satiIminute7[0],satiIminute8[0],satiIminute9[0],satiIminute10[0],satiIminute11[0],satiIminute12[0],satiIminute13[0],satiIminute14[0],satiIminute15[0],satiIminute16[0],satiIminute17[0],satiIminute18[0],satiIminute19[0],satiIminute20[0],satiIminute21[0],satiIminute22[0],satiIminute23[0],satiIminute24[0]],
@@ -297,9 +309,6 @@
           }
         }
           $(function () {
-            if(myDoughnutChart_2 != undefined){
-              myDoughnutChart_2.destroy();
-            }
             var ctx_2 = document.getElementById("drugi").getContext('2d');
             var data_2 = {
               datasets: [{
@@ -321,7 +330,7 @@
               ]
             };
 
-            var myDoughnutChart_2 = new Chart(ctx_2, {
+            myDoughnutChart_2 = new Chart(ctx_2, {
               type: 'doughnut',
               data: data_2,
               options: {
@@ -335,6 +344,8 @@
                 }
               }
             });
+
+
           });
       })
       .catch(error => {
