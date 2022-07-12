@@ -54,6 +54,7 @@
     const dohvatiPostotke = async () => {
       var idSpacea = document.getElementById("parkirniSpaceovi").value;
       var datum = document.getElementById("datumStatitika").value;
+      //console.log("AAAAAA",datum);
       const response = await fetch('https://localhost:7236/api/Parking/PercentageForParkingSpace?Id=' + idSpacea + '&datum=' + datum, {
         method: 'GET',
         headers: {
@@ -66,9 +67,13 @@
 
     }
 
+
     var myDoughnutChart_2;
     var prviChart;
     var drugiChart;
+    Chart.defaults.global.defaultFontSize = 16;
+    Chart.defaults.global.defaultFontColor = '#b3b3b3';
+    Chart.defaults.global.defaultFontFamily = 'Helvetica';
     function prikazi() {
 
       if(myDoughnutChart_2 != undefined)
@@ -285,7 +290,7 @@
       .then(datas => {
         // console.log(datas);
         var splitano = datas[0].split(";");
-        console.log(splitano);
+        //console.log(splitano);
         var regularSplitano;
         var handicappedSplitano;
         var reservedSplitano;
