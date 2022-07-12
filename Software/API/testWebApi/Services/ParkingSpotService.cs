@@ -97,7 +97,7 @@ namespace WebAPI.Services
                 string[] razdvojeniDatum = datum.Split('T');
                 var parkingSpot = context.TmpParkingSpaceLoads.Where(x => x.PslDatetime.ToString().StartsWith(razdvojeniDatum[0]) && x.PslParkingSpaceId == id).ToList();
                 return parkingSpot;
-            }
+            }   
         }
     }
 }

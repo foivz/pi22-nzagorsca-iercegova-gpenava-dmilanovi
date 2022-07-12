@@ -150,25 +150,16 @@ namespace WebAPI.Services
                 return postotak;
             }
         }
-        public double? GetPercentageForParkingSpaceForDate(int id, string datum)
+        public List<TmpParkingSpaceLoad> GetPercentageForParkingSpaceForDate(int id, string datum)
         {
             using (var context = new PI2201_DBContext())
             {
-                string[] razdvojenDatum = datum.Split('T');
-                string[] razdvojenGodinaMjesecDan = razdvojenDatum[0].Split('-');
-                string noviDatum = razdvojenGodinaMjesecDan[0] + "-" + razdvojenGodinaMjesecDan[1] + '-' + razdvojenGodinaMjesecDan[2] + ' ' + razdvojenDatum[1] + ":00.0000000 +01:00";
-                var parkingSessionsPerParkingSpotsPerParkingSpace = context.TmpParkingSpaceLoads.
-                    FromSqlRaw($"select * from tmp_parking_space_load where psl_datetime < '{noviDatum}' AND psl_parking_space_id = '{id}';").ToList();
 
-                double? zbrojLoadova = 0;
-                double? brojItema = 0;
-                foreach (var item in parkingSessionsPerParkingSpotsPerParkingSpace)
-                {
-                    brojItema++;
-                    zbrojLoadova += item.PslLoad;
-                }
-                double? average = zbrojLoadova / brojItema;
-                return average;
+                string[] razdvojenDatum = datum.Split('T');
+                string[] razdvojenDrugiDio = razdvojenDatum[1].Split('.');
+                string[] potrebanSat = razdvojenDrugiDio[0].Split(':');
+                var parkingSpot = context.TmpParkingSpaceLoads.Where(x => x.PslDatetime.ToString().StartsWith(razdvojenDatum[0] + " " + potrebanSat[0]) && x.PslParkingSpaceId == id).ToList();
+                return parkingSpot;
             }
         }
     }
