@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="css/glavni.css" />
   <link rel="stylesheet" href="css/pocetnaStranica.css" />
   <script>
-    
+
     const dohvatiPostotke = async () => {
       var idSpacea = document.getElementById("parkirniSpaceovi").value;
       var datum = document.getElementById("datumStatitika").value;
@@ -58,7 +58,7 @@
     Chart.defaults.global.defaultFontColor = '#b3b3b3';
     Chart.defaults.global.defaultFontFamily = 'Helvetica';
     function prikazi() {
-      if(drugiChart != undefined)
+      if (drugiChart != undefined)
         drugiChart.destroy();
 
       Promise.allSettled([odredeniParkingSpaceSaDatumom()]).then(
@@ -146,7 +146,7 @@
           var podaci22;
           var podaci23;
           var podaci24;
-          for (var z = 0; z < 24;  z++) {
+          for (var z = 0; z < 24; z++) {
             varijablica1 = podaci3[0].pslDatetime.split("T");
             varijablica2 = podaci3[1].pslDatetime.split("T");
             varijablica3 = podaci3[2].pslDatetime.split("T");
@@ -220,35 +220,39 @@
             podaci23 = podaci3[22].pslLoad;
             podaci24 = podaci3[23].pslLoad;
           }
-            drugiChart = new Chart(document.getElementById("treci"), {
-              type: 'bar',
-              data: {
-                labels: [satiIminute1[0], satiIminute2[0], satiIminute3[0],satiIminute4[0],satiIminute5[0],satiIminute6[0],satiIminute7[0],satiIminute8[0],satiIminute9[0],satiIminute10[0],satiIminute11[0],satiIminute12[0],satiIminute13[0],satiIminute14[0],satiIminute15[0],satiIminute16[0],satiIminute17[0],satiIminute18[0],satiIminute19[0],satiIminute20[0],satiIminute21[0],satiIminute22[0],satiIminute23[0],satiIminute24[0]],
-                datasets: [
-                  {
-                    label: "Postotak zauzetosti parkirnih mjesta",
-                    backgroundColor: "#3e95cd",
-                    data: [podaci1, podaci2,podaci30,podaci4,podaci5,podaci6,podaci7,podaci8,podaci9,podaci10,podaci11,podaci12,podaci13,podaci14,podaci15,podaci16,podaci17,podaci18,podaci19,podaci20,podaci21,podaci22,podaci23,podaci24]
-                  }
-                ]
+          drugiChart = new Chart(document.getElementById("treci"), {
+            type: 'line',
+            data: {
+              labels: [satiIminute1[0], satiIminute2[0], satiIminute3[0], satiIminute4[0], satiIminute5[0], satiIminute6[0], satiIminute7[0], satiIminute8[0], satiIminute9[0], satiIminute10[0], satiIminute11[0], satiIminute12[0], satiIminute13[0], satiIminute14[0], satiIminute15[0], satiIminute16[0], satiIminute17[0], satiIminute18[0], satiIminute19[0], satiIminute20[0], satiIminute21[0], satiIminute22[0], satiIminute23[0], satiIminute24[0]],
+              datasets: [
+                {
+                  fill: false,
+                  borderColor: '#1971c2',
+                  label: "Postotak zauzetosti parkirnih mjesta",
+                  backgroundColor: "#3e95cd",
+                  pointRadius: 5,
+                  pointHoverRadius: 8,
+                    data: [podaci1, podaci2, podaci30, podaci4, podaci5, podaci6, podaci7, podaci8, podaci9, podaci10, podaci11, podaci12, podaci13, podaci14, podaci15, podaci16, podaci17, podaci18, podaci19, podaci20, podaci21, podaci22, podaci23, podaci24]
+                }
+              ]
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: 'Postotak zauzetosti:'
               },
-              options: {
-                legend: { display: false },
-                title: {
-                  display: true,
-                  text: 'Postotak zauzetosti:'
-                },
 
-              }
-            });
+            }
+          });
         })
       })
-      .catch(error => {
-        console.error("Failed to fetch")
-      });
+        .catch(error => {
+          console.error("Failed to fetch")
+        });
     }
 
-</script>
+  </script>
 
   <title>Parkirna mjesta</title>
 </head>
@@ -283,58 +287,51 @@
     }
 
   </script>
-  
-<div class="spaceodabir" style="display: flex; gap: 20px;padding-left: 36%; padding-bottom: 15px;">
-  <div>
-  <label style="
+
+  <div class="spaceodabir" style="display: flex; gap: 20px;padding-left: 36%; padding-bottom: 15px;">
+    <div>
+      <label style="
       padding-right: 10px;
       color: #b3b3b3;
       font-size: 19px;
     ">
-    Odaberite parking space:
-  </label>      
-  <label style="
+        Odaberite parking space:
+      </label>
+      <label style="
   padding-left: 30px;
   padding-right: 10px;
   padding-bottom: 10px;
   color: #b3b3b3;
   font-size: 19px;
     ">
-    Odaberite datum:
-  </label>
-  <form onsubmit="prikazi()" id="mojaForma" name="mojaForma" >
-    <select name="parkingSpace" id="parkirniSpaceovi">
-    </select>
-  <input type="datetime-local" id="datumStatitika" name="datumStatitika"
-    value="2021-01-01T00:00" style="margin-left: 15px; padding-right: 25px;" />
-    <input type="submit" value="Prikaži" style="width:100px;"></input>
-  </form>
-  <br>
-  <label
-  style="
+        Odaberite datum:
+      </label>
+      <form onsubmit="prikazi()" id="mojaForma" name="mojaForma">
+        <select name="parkingSpace" id="parkirniSpaceovi">
+        </select>
+        <input type="datetime-local" id="datumStatitika" name="datumStatitika" value="2021-01-01T00:00"
+          style="margin-left: 15px; padding-right: 25px;" />
+        <input type="submit" value="Prikaži" style="width:100px;"></input>
+      </form>
+      <br>
+      <label style="
     padding-right: 10px;
     color: #b3b3b3;
     font-size: 19px;
-  "
->
-  Postotak zauzetosti parkirnog spacea:
-</label>
-<input
-  type="text"
-  id="postotakZauzetosti"
-  name="postotakZauzetosti"
-  disabled
-/>
-  </div>
-</div>
-<div class="klasa3">
-  <canvas id="treci" style="padding: 0 200px;" width="1250px" height="300px"></canvas>
-</div>
-    <div style="width: 50%; margin-left: 600px;">
-      <canvas id="canvas" style="padding-left: 50px"></canvas>
+  ">
+        Postotak zauzetosti parkirnog spacea:
+      </label>
+      <input type="text" id="postotakZauzetosti" name="postotakZauzetosti" disabled />
     </div>
+  </div>
+  <div class="klasa3">
+    <canvas id="treci" style="padding: 0 200px;" width="1250px" height="300px"></canvas>
+  </div>
+  <div style="width: 50%; margin-left: 600px;">
+    <canvas id="canvas" style="padding-left: 50px"></canvas>
+  </div>
 
-    <!-- <script>
+  <!-- <script>
       var chartColors = {
         red: "rgb(255, 99, 132)",
         orange: "rgb(255, 159, 64)",
@@ -429,8 +426,8 @@
     </script> -->
 
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script type="text/javascript" src="Javascript/algoritam.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <script type="text/javascript" src="Javascript/algoritam.js"></script>
 </body>
 
 </html>
