@@ -162,6 +162,37 @@ namespace WebAPI.Services
                 return parkingSpot;
             }
         }
+
+        public List<string> GetFreePercentageForParkingSpaceForDate(string datum)
+        {
+            using (var context = new PI2201_DBContext())
+            {
+                string[] razdvojenDatum = datum.Split('T');
+                //var parkingSpot = context.TmpParkingSpaceLoads.Where(x => x.PslDatetime.ToString().StartsWith(razdvojenDatum[0] + " " + potrebanSat[0]) && x.PslParkingSpaceId == id).ToList();
+                var parkingSpot = context.TmpParkingSpaceLoads.FromSqlRaw($"select * from dbo.tmp_parking_space_load where psl_datetime < '{razdvojenDatum[0] + " " + razdvojenDatum[1]}'").ToList();
+                var parkirniSpaceovi = context.TmpParkingSpaces.ToList();
+                List<string> zaVratiti = new List<string>();
+                foreach (var item in parkirniSpaceovi)
+                {
+                    double? prosjek = 0;
+                    double? brojBrojeva = 0;
+                    string djGrgo = "";
+                    djGrgo += item.PspParkingSpaceId;
+                    foreach (var item2 in parkingSpot)
+                    {
+                        if (item.PspParkingSpaceId == item2.PslParkingSpaceId)
+                        {
+                            prosjek += item2.PslLoad;
+                            brojBrojeva++;
+                        }
+                    }
+                    double? prosjekk = prosjek / brojBrojeva;
+                    string zaDodati = djGrgo + ";" + prosjekk.ToString();
+                    zaVratiti.Add(zaDodati);
+                }
+                return zaVratiti;
+            }
+        }
     }
 }
 

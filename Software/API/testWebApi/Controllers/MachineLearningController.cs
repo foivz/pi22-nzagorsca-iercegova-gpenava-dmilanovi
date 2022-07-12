@@ -45,6 +45,14 @@ namespace WebAPI.Controllers
         }
 
 
+        [HttpGet]
+        [Route("PercentageOfFreeParking")]
+        public async Task<ActionResult<List<string>>> GetFreePercentage(string datum)
+        {
+            return _parkingSessionService.GetFreePercentageForParkingSpaceForDate(datum);
+        }
+
+
         //[HttpGet]
         //[Route("parkingSessionsPerParkingSpace")]
         //public async Task<ActionResult<List<TmpParkingSession>>> GetParkingSessionsPerParkingSpace(int id)
