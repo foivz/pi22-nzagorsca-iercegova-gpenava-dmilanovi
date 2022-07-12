@@ -100,6 +100,22 @@ namespace testWebApi.Controllers
         {
             return _parkingSpotService.GetTypeOfParkingSpot(Id);
         }
+
+
+        [HttpGet]
+        [Route("SensorsForParkingSpace")]
+        public async Task<ActionResult<List<TmpSensor>>> GetSensorsForParkingSpaces(int Id)
+        {
+            return _parkingSpotService.GetSensorsForParkingSpace(Id);
+        }
+
+
+        [HttpGet]
+        [Route("PercentageForParkingSpace")]
+        public async Task<ActionResult<List<TmpParkingSpaceLoad>>> GetPercentageForParkingSpace(int Id, string datum)
+        {
+            return _parkingSpotService.GetPercentageForParkingSpace(Id, datum);
+        }
     }
 }
 

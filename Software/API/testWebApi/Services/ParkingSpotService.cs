@@ -74,5 +74,30 @@ namespace WebAPI.Services
                 return zaVratiti;
             }
         }
+
+
+        public List<TmpSensor> GetSensorsForParkingSpace(int id)
+        {
+            using (var context = new PI2201_DBContext())
+            {
+                var parkingSpot = context.TmpSensors.FromSqlRaw($"select distinct top 10 " +
+                    $"snr_sensor_id, snr_ble_mac, snr_nbps_packets_sent, snr_nbps_battery_voltage, snr_nbps_battery_level, snr_nbps_network_signal, " +
+                    $"snr_nbps_rsrq_value, snr_nbps_cell_id, snr_current_magdata_time from dbo.tmp_sensor INNER JOIN dbo.parking_sessions " +
+                    $"ON dbo.parking_sessions.pss_sensor_id = dbo.tmp_sensor.snr_sensor_id INNER JOIN dbo.tmp_parking_spot ON dbo.parking_sessions.pss_parking_spot_id =" +
+                    $" dbo.tmp_parking_spot.spt_parking_spot_id INNER JOIN dbo.tmp_parking_space ON dbo.tmp_parking_space.psp_parking_space_id = " +
+                    $"dbo.tmp_parking_spot.spt_parking_space_id WHERE dbo.tmp_parking_space.psp_parking_space_id = '{id}' ORDER BY snr_nbps_battery_level asc;").ToList();
+                return parkingSpot;
+            }
+        }
+
+        public List<TmpParkingSpaceLoad> GetPercentageForParkingSpace(int id, string datum)
+        {
+            using (var context = new PI2201_DBContext())
+            {
+                string[] razdvojeniDatum = datum.Split('T');
+                var parkingSpot = context.TmpParkingSpaceLoads.Where(x => x.PslDatetime.ToString().StartsWith(razdvojeniDatum[0]) && x.PslParkingSpaceId == id).ToList();
+                return parkingSpot;
+            }
+        }
     }
 }
