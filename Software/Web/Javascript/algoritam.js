@@ -205,6 +205,7 @@ function ucitavanje(){
                 backgroundColor: "#3e95cd",
                 pointRadius: 5,
                 pointHoverRadius: 8,
+                
                   data: [podaci1, podaci2, podaci30, podaci4, podaci5, podaci6, podaci7, podaci8, podaci9, podaci10, podaci11, podaci12, podaci13, podaci14, podaci15, podaci16, podaci17, podaci18, podaci19, podaci20, podaci21, podaci22, podaci23, podaci24]
               }
             ]
@@ -217,6 +218,7 @@ function ucitavanje(){
                   labelString: 'Postotak (%)'
                 }
               }]
+              
             },
             legend: { display: false },
             title: {

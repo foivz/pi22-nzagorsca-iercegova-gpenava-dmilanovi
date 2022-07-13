@@ -370,21 +370,27 @@
               ]
             },
             options: {
-              scales: {
-                yAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    labelString: 'Postotak (%)'
-                  }
-                }]
-              },
-              legend: { display: false },
-              title: {
-                display: true,
-                text: 'Postotak zauzetosti parkirališta za odabrani datum:'
-              },
-
-            }
+            scales: {
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Postotak (%)'
+                }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Oznaka parkirališta'
+                }
+              }]
+            },
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'Postotak zauzetosti parkirališta za odabrani datum:'
+            },
+  
+          }
           });
         })
       })
