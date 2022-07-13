@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="css/pocetnaStranica.css" />
   <script>
 
+
     const dohvatiPostotke = async () => {
       var idSpacea = document.getElementById("parkirniSpaceovi").value;
       var datum = document.getElementById("datumStatitika").value;
@@ -37,8 +38,6 @@
     const odredeniParkingSpaceSaDatumom = async () => {
       var idSpacea = document.getElementById("parkirniSpaceovi").value;
       var datum = document.getElementById("datumStatitika").value;
-      console.log(idSpacea);
-      console.log(datum);
       const response = await fetch(
         "https://localhost:7236/api/MachineLearning/PercentageOfParking?id=" + idSpacea + "&datum=" + datum,
         {
@@ -66,8 +65,8 @@
           $(function () {
             var park = parkirniSpaceovi2[0];
             var valueParkingSpacea = park[Object.keys(park)[1]];
-            document.getElementById("postotakZauzetosti").value = valueParkingSpacea[0].pslLoad + "%";
-            console.log(valueParkingSpacea[0].pslLoad);
+            var cijeliBroj = valueParkingSpacea[0].pslLoad.toString().split(".");
+            document.getElementById("postotakZauzetosti").value = cijeliBroj[0] + "%";
           });
         }
       );
@@ -295,10 +294,10 @@
       color: #b3b3b3;
       font-size: 19px;
     ">
-        Odaberite parking space:
+        Odaberite parkiralište:
       </label>
       <label style="
-  padding-left: 30px;
+  padding-left: 60px;
   padding-right: 10px;
   padding-bottom: 10px;
   color: #b3b3b3;
@@ -319,7 +318,7 @@
     color: #b3b3b3;
     font-size: 19px;
   ">
-        Postotak zauzetosti parkirnog spacea:
+        Postotak zauzetosti parkirališta:
       </label>
       <input type="text" id="postotakZauzetosti" name="postotakZauzetosti" disabled />
     </div>

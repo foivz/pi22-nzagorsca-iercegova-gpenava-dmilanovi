@@ -36,6 +36,7 @@ function promjena() {
       for (var i = 0; i < valueParkingSpota.length; i++) {
         brojSlobodnihMjesta++;
         var data = valueParkingSpota[i];
+        console.log("AAAAAAAAA",data);
         const marker6 = new google.maps.Marker({
           position: {
             lat: valueParkingSpota[i].sptLatitude,
