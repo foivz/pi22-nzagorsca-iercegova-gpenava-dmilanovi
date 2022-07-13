@@ -386,6 +386,12 @@ function dodajParkingSpaces() {
                   display: true,
                   labelString: 'Postotak (%)'
                 }
+              }],
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Oznaka parkirališta'
+                }
               }]
             },
             legend: { display: false },
