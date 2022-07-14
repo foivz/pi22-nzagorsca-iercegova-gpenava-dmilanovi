@@ -59,7 +59,7 @@ function promjena() {
         (function (marker6, data) {
           const contentString =
             "</div>" +
-            `<h1 id="firstHeading" class="firstHeading">${labelParkingSpace} (${data.sptLabel})</h1>` +
+            `<h2 id="firstHeading" class="firstHeading">${labelParkingSpace} (${data.sptLabel})</h2>` +
             '<div id="bodyContent">' +
             `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
             `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
@@ -98,7 +98,7 @@ function promjena() {
             (function (marker6, data) {
               const contentString =
                 "</div>" +
-                `<h1 id="firstHeading" class="firstHeading">${labelParkingSpace} (${data.sptLabel})</h1>` +
+                `<h2 id="firstHeading" class="firstHeading">${labelParkingSpace} (${data.sptLabel})</h2>` +
                 '<div id="bodyContent">' +
                 `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
                 `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
