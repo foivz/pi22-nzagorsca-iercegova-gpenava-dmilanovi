@@ -19,24 +19,34 @@ function promjena() {
   var brojSlobodnihMjesta = 0;
   var brojZauzetihMjesta = 0;
   var ukupanBrojMjesta = 0;
-  Promise.allSettled([userAction3(), userAction()]).then((podaci3) => {
+  Promise.allSettled([userAction3(), userAction(), userAction2()]).then((podaci3) => {
     $(function () {
       var infoWindow = new google.maps.InfoWindow();
-
+      console.log(podaci3);
       function isInfoWindowOpen(infoWindow) {
         var map = infoWindow.getMap();
         return map !== null && typeof map !== "undefined";
       }
-
       var parkingSpots = podaci3[1];
       var parkingSessions = podaci3[0];
+      var parkingSpacess = podaci3[2];
       var valueParkingSpota = parkingSpots[Object.keys(parkingSpots)[1]];
       var valueParkingSessiona =
         parkingSessions[Object.keys(parkingSessions)[1]];
+      var valueParkingSpacea =
+      parkingSpacess[Object.keys(parkingSpacess)[1]];
       for (var i = 0; i < valueParkingSpota.length; i++) {
         brojSlobodnihMjesta++;
         var data = valueParkingSpota[i];
-        console.log("AAAAAAAAA",data);
+        var labelParkingSpace;
+        for(var j = 0; j < valueParkingSpacea.length; j++){
+          if(valueParkingSpota[i].sptParkingSpaceId === valueParkingSpacea[j].pspParkingSpaceId){
+            labelParkingSpace = valueParkingSpacea[j].pspLabel;
+            console.log(labelParkingSpace);
+            break;
+          }
+        }
+        console.log(labelParkingSpace);
         const marker6 = new google.maps.Marker({
           position: {
             lat: valueParkingSpota[i].sptLatitude,
@@ -49,7 +59,7 @@ function promjena() {
         (function (marker6, data) {
           const contentString =
             "</div>" +
-            `<h1 id="firstHeading" class="firstHeading">${data.sptLabel}</h1>` +
+            `<h1 id="firstHeading" class="firstHeading">${labelParkingSpace} (${data.sptLabel})</h1>` +
             '<div id="bodyContent">' +
             `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
             `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
@@ -88,7 +98,7 @@ function promjena() {
             (function (marker6, data) {
               const contentString =
                 "</div>" +
-                `<h1 id="firstHeading" class="firstHeading">${data.sptLabel}</h1>` +
+                `<h1 id="firstHeading" class="firstHeading">${labelParkingSpace} (${data.sptLabel})</h1>` +
                 '<div id="bodyContent">' +
                 `<p><b>Parking spot ID</b>: ${data.sptParkingSpotId}</p>` +
                 `<p><b>Parking space ID</b>: ${data.sptParkingSpaceId}</p>` +
@@ -124,6 +134,20 @@ function promjena() {
 const userAction = async () => {
   const response = await fetch(
     "https://localhost:7236/api/Parking/allParkingSpots",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const myJson = await response.json();
+  return myJson;
+};
+
+const userAction2 = async () => {
+  const response = await fetch(
+    "https://localhost:7236/api/Parking/allParkingSpaces",
     {
       method: "GET",
       headers: {
