@@ -177,7 +177,7 @@ namespace WebAPI.Services
                     double? prosjek = 0;
                     double? brojBrojeva = 0;
                     string djGrgo = "";
-                    djGrgo += item.PspParkingSpaceId;
+                    djGrgo += item.PspLabel;
                     foreach (var item2 in parkingSpot)
                     {
                         if (item.PspParkingSpaceId == item2.PslParkingSpaceId)
